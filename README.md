@@ -15,5 +15,5 @@ nix-shell
 ### Setting configuration for a user
 For `$USER`:
 ```bash
-home-manager switch -f ./users/$USER/home.nix 
+./scripts/set-user.nu $USER
 ```
