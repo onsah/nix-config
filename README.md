@@ -7,6 +7,11 @@ This repository contains Nix configuration for my devices.
 
 ## Usage
 
+Enter to the shell
+```
+nix-shell
+```
+
 ### Setting configuration for a user
 For `$USER`:
 ```bash
