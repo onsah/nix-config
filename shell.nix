@@ -8,4 +8,4 @@
 
       chmod +x ./scripts/set-user.nu
     '';
-}
+  }
