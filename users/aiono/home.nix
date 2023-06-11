@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  # Options: https://rycee.gitlab.io/home-manager/options.html
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "aiono";
@@ -36,6 +38,8 @@
     # '')
     pkgs.git
     pkgs.nano
+    pkgs.blackbox-terminal
+    pkgs.webtorrent_desktop
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -69,4 +73,24 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.bash = {
+    enable = true;
+    bashrcExtra = ''
+      # Source global definitions
+      if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+      fi
+    '';
+    profileExtra = ''
+      # Get the aliases and functions
+      if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+      fi
+
+      if [ -e /home/aiono/.nix-profile/etc/profile.d/nix.sh ]; then . /home/aiono/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+    '';
+  };
+
+  targets.genericLinux.enable = true;
 }
