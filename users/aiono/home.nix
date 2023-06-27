@@ -42,6 +42,7 @@
     pkgs.webtorrent_desktop
     pkgs.vscode
     pkgs.discord
+    pkgs.tuba
   ];
 
   nixpkgs.config.allowUnfree = true;
