@@ -43,6 +43,7 @@
     pkgs.vscode
     pkgs.discord
     pkgs.tuba
+    pkgs.fractal
   ];
 
   nixpkgs.config.allowUnfree = true;
