@@ -46,6 +46,7 @@
     pkgs.fractal
     pkgs.spotify
     pkgs.gnome.geary
+    pkgs.newsflash
   ];
 
   nixpkgs.config.allowUnfree = true;
