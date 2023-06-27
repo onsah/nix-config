@@ -44,6 +44,7 @@
     pkgs.discord
     pkgs.tuba
     pkgs.fractal
+    pkgs.spotify
   ];
 
   nixpkgs.config.allowUnfree = true;
