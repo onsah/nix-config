@@ -45,6 +45,7 @@
     pkgs.tuba
     pkgs.fractal
     pkgs.spotify
+    pkgs.gnome.geary
   ];
 
   nixpkgs.config.allowUnfree = true;
