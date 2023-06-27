@@ -41,6 +41,7 @@
     pkgs.blackbox-terminal
     pkgs.webtorrent_desktop
     pkgs.vscode
+    pkgs.discord
   ];
 
   nixpkgs.config.allowUnfree = true;
