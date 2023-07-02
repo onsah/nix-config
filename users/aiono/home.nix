@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # Options: https://rycee.gitlab.io/home-manager/options.html
@@ -47,6 +47,8 @@
     pkgs.spotify
     pkgs.gnome.geary
     pkgs.newsflash
+    pkgs.nil
+    pkgs.nixpkgs-fmt
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -102,4 +104,32 @@
   };
 
   targets.genericLinux.enable = true;
+
+  systemd.user = {
+    services.nextcloud-autosync =
+      let
+        credentials = import ./secrets.nix;
+      in
+      {
+        Unit = {
+          Description = "Auto sync Nextcloud";
+          After = "network-online.target";
+        };
+        Service = {
+          Type = "simple";
+          ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --user ${credentials.nextcloud.username} --password ${credentials.nextcloud.password} --path /Temporary/TestSync /home/aiono/Documents/TestSync https://nextcloud.aiono.dev";
+          TimeoutStopSec = "180";
+          KillMode = "process";
+          KillSignal = "SIGINT";
+        };
+        Install.WantedBy = [ "multi-user.target" ];
+      };
+    timers.nextcloud-autosync = {
+      Unit.Description = "Automatic sync files with Nextcloud when booted up after 5 minutes then rerun every 10 seconds";
+      Timer.OnUnitActiveSec = "15s";
+      Timer.OnBootSec = "3min";
+      Install.WantedBy = [ "multi-user.target" "timers.target" ];
+    };
+    startServices = true;
+  };
 }
