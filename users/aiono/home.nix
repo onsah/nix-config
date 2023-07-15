@@ -106,29 +106,33 @@
   targets.genericLinux.enable = true;
 
   systemd.user = {
-    services.nextcloud-autosync =
-      let
-        credentials = import ./secrets.nix;
-      in
-      {
-        Unit = {
-          Description = "Auto sync Nextcloud";
-          After = "network-online.target";
+    services = {
+      nextcloud-autosync =
+        let
+          credentials = import ./secrets.nix;
+        in
+        {
+          Unit = {
+            Description = "Auto sync Nextcloud";
+            After = "network-online.target";
+          };
+          Service = {
+            Type = "simple";
+            ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --user ${credentials.nextcloud.username} --password ${credentials.nextcloud.password} --path /Programming/Notes /home/aiono/Documents/ProgrammingNotes https://nextcloud.aiono.dev";
+            TimeoutStopSec = "180";
+            KillMode = "process";
+            KillSignal = "SIGINT";
+          };
+          Install.WantedBy = [ "multi-user.target" ];
         };
-        Service = {
-          Type = "simple";
-          ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --user ${credentials.nextcloud.username} --password ${credentials.nextcloud.password} --path /Programming/Notes /home/aiono/Documents/ProgrammingNotes https://nextcloud.aiono.dev";
-          TimeoutStopSec = "180";
-          KillMode = "process";
-          KillSignal = "SIGINT";
-        };
-        Install.WantedBy = [ "multi-user.target" ];
+    };
+    timers = {
+      nextcloud-autosync = {
+        Unit.Description = "Automatic sync files with Nextcloud when booted up after 5 minutes then rerun every 10 seconds";
+        Timer.OnUnitActiveSec = "15s";
+        Timer.OnBootSec = "3min";
+        Install.WantedBy = [ "multi-user.target" "timers.target" ];
       };
-    timers.nextcloud-autosync = {
-      Unit.Description = "Automatic sync files with Nextcloud when booted up after 5 minutes then rerun every 10 seconds";
-      Timer.OnUnitActiveSec = "15s";
-      Timer.OnBootSec = "3min";
-      Install.WantedBy = [ "multi-user.target" "timers.target" ];
     };
     startServices = true;
   };
