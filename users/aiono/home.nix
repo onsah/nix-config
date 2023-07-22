@@ -49,6 +49,7 @@
     pkgs.newsflash
     pkgs.nil
     pkgs.nixpkgs-fmt
+    pkgs.vlc
   ];
 
   nixpkgs.config.allowUnfree = true;
