@@ -50,7 +50,6 @@
     pkgs.nil
     pkgs.nixpkgs-fmt
     pkgs.vlc
-    pkgs.firefox
   ];
 
   nixpkgs.config.allowUnfree = true;
