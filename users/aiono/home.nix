@@ -42,7 +42,6 @@
     pkgs.webtorrent_desktop
     pkgs.vscode
     pkgs.discord
-    pkgs.tuba
     pkgs.fractal
     pkgs.spotify
     pkgs.gnome.geary
