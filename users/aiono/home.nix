@@ -126,7 +126,7 @@
           Install.WantedBy = [ "multi-user.target" ];
         };
       nextcloud-autosync-static-analysis-notes =
-        let 
+        let
           credentials = import ./secrets.nix;
         in
         {
@@ -158,4 +158,27 @@
     };
     startServices = true;
   };
+
+  dconf.settings =
+    let
+      # Custom Gnome shortcut keybindings
+      shortcuts = {
+        "org/gnome/settings-daemon/plugins/media-keys" = {
+          control-center = [ "<Super>s" ];
+          custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/" ];
+          www = [ "<Super>f" ];
+        };
+        "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+          binding = "<Super>t";
+          command = "blackbox";
+          name = "Open Terminal";
+        };
+        "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+          binding = "<Super>e";
+          command = "flatpak run it.mijorus.smile";
+          name = "Emoji Picker";
+        };
+      };
+    in
+    shortcuts;
 }
