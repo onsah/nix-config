@@ -40,7 +40,6 @@
     pkgs.nano
     pkgs.blackbox-terminal
     pkgs.webtorrent_desktop
-    pkgs.vscode
     pkgs.discord
     pkgs.fractal
     pkgs.spotify
@@ -84,6 +83,10 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.vscode = {
+    enable = true;
+  };
 
   programs.nushell = {
     enable = true;
