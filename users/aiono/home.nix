@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   # Options: https://rycee.gitlab.io/home-manager/options.html
@@ -48,6 +48,7 @@
     pkgs.nil
     pkgs.nixpkgs-fmt
     pkgs.vlc
+    (pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; })
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -83,6 +84,8 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  fonts.fontconfig.enable = true;
 
   programs.vscode = {
     enable = true;
@@ -123,6 +126,23 @@
         "nu" = {
           "path" = "nu";
         };
+      };
+      "terminal.integrated.fontFamily" = "'CaskaydiaCove Nerd Font Mono'";
+    };
+  };
+
+  programs.starship = {
+    enable = true;
+    enableNushellIntegration = true;
+    settings = {
+      format = "$all$username$character";
+      directory = {
+        home_symbol = "~";
+        format = "at [$path]($style)[$read_only]($read_only_style) ";
+      };
+      username = {
+        show_always = true;
+        format = "[$user]($style) ";
       };
     };
   };
@@ -242,6 +262,7 @@
           command-as-login-shell = true;
           custom-shell-command = "env nu";
           use-custom-command = true;
+          font="CaskaydiaCove Nerd Font Mono 11";
         };
       };
     in
