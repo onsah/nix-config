@@ -91,11 +91,6 @@
     bashrcExtra = ''
     '';
     profileExtra = ''
-      # Get the aliases and functions
-      if [ -f ~/.bashrc ]; then
-        . ~/.bashrc
-      fi
-
       if [ -e /home/aiono/.nix-profile/etc/profile.d/nix.sh ]; then . /home/aiono/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
     '';
   };
