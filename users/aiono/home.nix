@@ -114,6 +114,16 @@
         };
       };
       "window.menuBarVisibility" = "toggle";
+      "terminal.integrated.defaultProfile.linux" = "nu";
+      "terminal.integrated.profiles.linux" = {
+        "bash" = {
+          "path" = "bash";
+          "icon" = "terminal-bash";
+        };
+        "nu" = {
+          "path" = "nu";
+        };
+      };
     };
   };
 
