@@ -4,6 +4,7 @@
   # Options: https://rycee.gitlab.io/home-manager/options.html
   imports = [
     ./programs
+    ./systemd
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -93,75 +94,6 @@
 
   targets.genericLinux.enable = true;
 
-  systemd.user = {
-    services =
-      let
-        credentials = import ./secrets.nix;
-      in
-      {
-        nextcloud-autosync-programming-notes = {
-          Unit = {
-            Description = "Auto sync Nextcloud Programming Notes";
-            After = "network-online.target";
-          };
-          Service = {
-            Type = "simple";
-            ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --user ${credentials.nextcloud.username} --password ${credentials.nextcloud.password} --path /Programming/Notes /home/aiono/Documents/ProgrammingNotes https://nextcloud.aiono.dev";
-            TimeoutStopSec = "180";
-            KillMode = "process";
-            KillSignal = "SIGINT";
-          };
-          Install.WantedBy = [ "multi-user.target" ];
-        };
-        nextcloud-autosync-static-analysis-notes = {
-          Unit = {
-            Description = "Auto sync Nextcloud Static Analysis Book Notes";
-            After = "network-online.target";
-          };
-          Service = {
-            Type = "simple";
-            ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --user ${credentials.nextcloud.username} --password ${credentials.nextcloud.password} --path /Programming/StaticAnalysis /home/aiono/Documents/Projects/StaticProgramAnalysis https://nextcloud.aiono.dev";
-            TimeoutStopSec = "180";
-            KillMode = "process";
-            KillSignal = "SIGINT";
-          };
-          Install.WantedBy = [ "multi-user.target" ];
-        };
-        nextcloud-autosync-music-notes = {
-          Unit = {
-            Description = "Auto sync Nextcloud Music Notes";
-            After = "network-online.target";
-          };
-          Service = {
-            Type = "simple";
-            ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --user ${credentials.nextcloud.username} --password ${credentials.nextcloud.password} --path /Muzik /home/aiono/Documents/MusicNotes https://nextcloud.aiono.dev";
-            TimeoutStopSec = "180";
-            KillMode = "process";
-            KillSignal = "SIGINT";
-          };
-          Install.WantedBy = [ "multi-user.target" ];
-        };
-      };
-    timers = {
-      nextcloud-autosync-programming-notes = {
-        Unit.Description = "Automatic sync files with Nextcloud when booted up after 5 minutes then rerun every 10 seconds";
-        Timer.OnCalendar = "*-*-* *:*:00,15,30,45";
-        Install.WantedBy = [ "multi-user.target" "timers.target" ];
-      };
-      nextcloud-autosync-static-analysis-notes = {
-        Unit.Description = "Automatic sync files with Nextcloud when booted up after 5 minutes then rerun every 10 seconds";
-        Timer.OnCalendar = "*-*-* *:*:00,15,30,45";
-        Install.WantedBy = [ "multi-user.target" "timers.target" ];
-      };
-      nextcloud-autosync-music-notes = {
-        Unit.Description = "Automatic sync files with Nextcloud when booted up after 5 minutes then rerun every 10 seconds";
-        Timer.OnCalendar = "*-*-* *:*:00,15,30,45";
-        Install.WantedBy = [ "multi-user.target" "timers.target" ];
-      };
-    };
-    startServices = true;
-  };
-
   dconf.settings =
     let
       # Custom Gnome shortcut keybindings
@@ -188,7 +120,7 @@
           command-as-login-shell = true;
           custom-shell-command = "env nu";
           use-custom-command = true;
-          font="CaskaydiaCove Nerd Font Mono 11";
+          font = "CaskaydiaCove Nerd Font Mono 11";
         };
       };
     in
