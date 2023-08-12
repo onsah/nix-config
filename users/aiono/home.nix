@@ -1,7 +1,10 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
   # Options: https://rycee.gitlab.io/home-manager/options.html
+  imports = [
+    ./programs
+  ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -87,84 +90,6 @@
   programs.home-manager.enable = true;
 
   fonts.fontconfig.enable = true;
-
-  programs.vscode = {
-    enable = true;
-    userSettings = {
-      "[json]" = {
-        "editor.defaultFormatter" = "vscode.json-language-features";
-      };
-      "nix.enableLanguageServer" = true;
-      "nix.formatterPath" = "nixpkgs-fmt";
-      "nix.serverPath" = "nil";
-      "nix.serverSettings" = {
-        nil = {
-          formatting = {
-            command = [ "nixpkgs-fmt" ];
-          };
-        };
-        nixd = {
-          eval = {
-            target = {
-              args = [ "--expr" "with import <nixpkgs> { }; callPackage ./users/aiono/home.nix { }" ];
-              installable = "";
-            };
-          };
-          formatting = { command = "nixpkgs-fmt"; };
-          options = {
-            enable = true;
-            target = { args = [ "--expr" "(import <home-manager> {  }).home-manager" ]; installable = ""; };
-          };
-        };
-      };
-      "window.menuBarVisibility" = "toggle";
-      "terminal.integrated.defaultProfile.linux" = "nu";
-      "terminal.integrated.profiles.linux" = {
-        "bash" = {
-          "path" = "bash";
-          "icon" = "terminal-bash";
-        };
-        "nu" = {
-          "path" = "nu";
-        };
-      };
-      "terminal.integrated.fontFamily" = "'CaskaydiaCove Nerd Font Mono'";
-    };
-  };
-
-  programs.starship = {
-    enable = true;
-    enableNushellIntegration = true;
-    settings = {
-      format = "$all$username$character";
-      directory = {
-        home_symbol = "~";
-        format = "at [$path]($style)[$read_only]($read_only_style) ";
-      };
-      username = {
-        show_always = true;
-        format = "[$user]($style) ";
-      };
-    };
-  };
-
-  programs.nushell = {
-    enable = true;
-    configFile.text = ''
-      $env.config = {
-        show_banner: true,
-      };
-    '';
-  };
-
-  programs.bash = {
-    enable = true;
-    bashrcExtra = ''
-    '';
-    profileExtra = ''
-      if [ -e /home/aiono/.nix-profile/etc/profile.d/nix.sh ]; then . /home/aiono/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-    '';
-  };
 
   targets.genericLinux.enable = true;
 
