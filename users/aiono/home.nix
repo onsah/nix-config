@@ -49,7 +49,6 @@
     pkgs.nil
     pkgs.nixpkgs-fmt
     pkgs.vlc
-    pkgs.nushell
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -86,13 +85,13 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  programs.nushell = {
+    enable = true;
+  };
+
   programs.bash = {
     enable = true;
     bashrcExtra = ''
-    # Change default interactive shell to nushell
-    if [ -t 1 ]; then
-      exec nu
-    fi
     '';
     profileExtra = ''
       if [ -e /home/aiono/.nix-profile/etc/profile.d/nix.sh ]; then . /home/aiono/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
@@ -190,6 +189,14 @@
           name = "Emoji Picker";
         };
       };
+      # Blackbox settings
+      blackbox = {
+        "com/raggesilver/BlackBox" = {
+          command-as-login-shell = true;
+          custom-shell-command = "env nu";
+          use-custom-command = true;
+        };
+      };
     in
-    shortcuts;
+    shortcuts // blackbox;
 }
