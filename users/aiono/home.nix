@@ -88,10 +88,6 @@
   programs.bash = {
     enable = true;
     bashrcExtra = ''
-      # Source global definitions
-      if [ -f /etc/bashrc ]; then
-        . /etc/bashrc
-      fi
     '';
     profileExtra = ''
       # Get the aliases and functions
