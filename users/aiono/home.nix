@@ -151,7 +151,7 @@
     enable = true;
     configFile.text = ''
       $env.config = {
-        show_banner: false,
+        show_banner: true,
       };
     '';
   };
