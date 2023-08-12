@@ -1,4 +1,4 @@
-{ pkgs ? import (fetchTarball channel:nixos-22.11) {} }:
+{ pkgs ? import (fetchTarball "channel:nixos-23.05") {} }:
   pkgs.mkShell {
     nativeBuildInputs = with pkgs; [ 
       nushell
