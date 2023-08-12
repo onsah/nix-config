@@ -49,6 +49,7 @@
     pkgs.nixpkgs-fmt
     pkgs.vlc
     (pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+    pkgs.spot
   ];
 
   nixpkgs.config.allowUnfree = true;
