@@ -49,6 +49,7 @@
     pkgs.nil
     pkgs.nixpkgs-fmt
     pkgs.vlc
+    pkgs.nushell
   ];
 
   nixpkgs.config.allowUnfree = true;
