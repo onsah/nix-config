@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -17,7 +17,7 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
+  home.packages = with pkgs; [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -34,7 +34,7 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-	  pkgs.gnumake
+	  gnumake
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -65,6 +65,16 @@
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
     # EDITOR = "emacs";
+  };
+
+  home.activation = {
+    brewBundleHook = 
+      let
+        brewfile = builtins.toFile "Brewfile" (builtins.readFile brew/Brewfile);
+      in 
+        lib.hm.dag.entryAfter ["writeBoundary"] ''
+          $DRY_RUN_CMD /opt/homebrew/bin/brew bundle --file ${brewfile} --no-lock
+        '';
   };
 
   # Let Home Manager install and manage itself.
