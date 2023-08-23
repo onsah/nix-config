@@ -8,5 +8,6 @@ This user represents my Carbon M1 Mac work computer.
 
 ## Homebrew Packages
 I manage Homebrew packages via an [activation hook](https://rycee.gitlab.io/home-manager/options.html#opt-home.activation). 
+This let's me maintain brew packages declaratively.
 However, the `brew` itself is not managed via home manager, it needs to be installed separately.
 I could use `nix-darwin` but I want to keep the setup simple.
