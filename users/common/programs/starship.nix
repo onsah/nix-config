@@ -2,10 +2,8 @@
 }:
 
 {
-  # TODO: Consolidate with common/programs/starship.nix
   programs.starship = {
     enable = true;
-    enableNushellIntegration = true;
     settings = {
       format = "$all$username$character";
       directory = {

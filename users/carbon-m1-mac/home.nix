@@ -1,6 +1,10 @@
 { config, pkgs, lib, ... }:
 
 {
+  imports = [
+    ../common/programs
+  ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "onur";
@@ -92,6 +96,10 @@
 
   programs.rtx = {
     enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.starship = {
     enableZshIntegration = true;
   };
 }
