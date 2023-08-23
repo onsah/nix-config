@@ -114,6 +114,3 @@ eval "$(/opt/homebrew/bin/rtx activate zsh)"
 
 # direnv hook
 eval "$(direnv hook zsh)"
-
-# Coursier hook
-path+='/Users/onur/Library/Application Support/Coursier/bin'
