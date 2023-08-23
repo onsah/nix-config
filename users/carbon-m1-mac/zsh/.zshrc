@@ -118,9 +118,5 @@ eval "$(direnv hook zsh)"
 # Coursier hook
 path+='/Users/onur/Library/Application Support/Coursier/bin'
 
-# Git settings
-# Git doesn't recognize aliases
-export GIT_EDITOR=$(echo $aliases[code])
-
 # Make path
 path+="/opt/homebrew/opt/make/libexec/gnubin"

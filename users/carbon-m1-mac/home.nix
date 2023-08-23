@@ -50,6 +50,7 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
     ".zshrc".source = zsh/.zshrc;
+	".config/git/config".source = git/config;
   };
 
   # You can also manage environment variables but you will have to manually
