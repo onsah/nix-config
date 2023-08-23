@@ -74,4 +74,9 @@
     enable = true;
     initExtra = (builtins.readFile zsh/.zshrc);
   };
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 }

@@ -111,6 +111,3 @@ path+='/Users/onur/aws-cli/bin'
 
 # rtx hook
 eval "$(/opt/homebrew/bin/rtx activate zsh)"
-
-# direnv hook
-eval "$(direnv hook zsh)"
