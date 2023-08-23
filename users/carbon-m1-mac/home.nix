@@ -34,7 +34,7 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-	pkgs.gnumake
+	  pkgs.gnumake
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -50,8 +50,7 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
-    ".zshrc".source = zsh/.zshrc;
-	".config/git/config".source = git/config;
+	  ".config/git/config".source = git/config;
   };
 
   # You can also manage environment variables but you will have to manually
@@ -70,4 +69,9 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.zsh = {
+    enable = true;
+    initExtra = (builtins.readFile zsh/.zshrc);
+  };
 }
