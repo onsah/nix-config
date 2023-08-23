@@ -79,4 +79,9 @@
     enable = true;
     enableZshIntegration = true;
   };
+
+  programs.rtx = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 }

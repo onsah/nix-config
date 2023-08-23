@@ -108,6 +108,3 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Add AWS CLI to PATH
 path+='/Users/onur/aws-cli/bin'
-
-# rtx hook
-eval "$(/opt/homebrew/bin/rtx activate zsh)"
