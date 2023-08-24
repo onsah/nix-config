@@ -5,6 +5,25 @@ This repository contains Nix configuration for my devices.
 * Nix Setup
 * Home Manager Setup
 
+## Project File Structure
+```
+.
+├── scripts
+└── users/
+    ├── common/
+    │   └── programs
+    └── $user/
+        ├── programs
+        └── home.nix
+```
+* `scripts`: Scripts to execute configurations.
+* `users`: List of user configs.
+  * `$user`
+    * `home.nix`: [Home Manager](https://nix-community.github.io/home-manager/) entry to the configuration.
+    * `programs`: Program configurations.
+  * `common`: Configurations used accross users
+    * `programs`: Program configurations.
+
 ## Usage
 
 Enter to the shell
@@ -24,7 +43,7 @@ For `$USER`:
 ### Managing Shortcuts
 Gnome shortcuts are stored in `dconf`. The shortcuts are declared via `dconf.settings`.
 
-#### Figuring out the dconf path for the shortcut
+### Figuring out the dconf path for the shortcut
 1. Run `dconf watch /org/gnome/settings-daemon/plugins/media-keys/`
 2. Set the shortcut from the GUI
 3. The initial command will show you the setting path and value
