@@ -1,9 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [
-    ../common/programs
-  ];
+  imports = [ ../common/programs ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -19,22 +17,16 @@
   # release notes.
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
-  home.packages = with pkgs; [
-	  gnumake
-  ];
+  home.packages = with pkgs; [ gnumake ];
 
-  home.file = {
-	  ".config/git/config".source = git/config;
-  };
+  home.file = { ".config/git/config".source = git/config; };
 
   home.activation = {
-    brewBundleHook = 
-      let
-        brewfile = builtins.toFile "Brewfile" (builtins.readFile brew/Brewfile);
-      in 
-        lib.hm.dag.entryAfter ["writeBoundary"] ''
-          $DRY_RUN_CMD /opt/homebrew/bin/brew bundle --file ${brewfile} --no-lock
-        '';
+    brewBundleHook = let
+      brewfile = builtins.toFile "Brewfile" (builtins.readFile brew/Brewfile);
+    in lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      $DRY_RUN_CMD /opt/homebrew/bin/brew bundle --file ${brewfile} --no-lock
+    '';
   };
 
   programs.home-manager.enable = true;
@@ -54,7 +46,5 @@
     enableZshIntegration = true;
   };
 
-  programs.starship = {
-    enableZshIntegration = true;
-  };
+  programs.starship = { enableZshIntegration = true; };
 }

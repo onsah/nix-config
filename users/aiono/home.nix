@@ -2,10 +2,7 @@
 
 {
   # Options: https://rycee.gitlab.io/home-manager/options.html
-  imports = [
-    ./programs
-    ./systemd
-  ];
+  imports = [ ./programs ./systemd ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -94,35 +91,38 @@
 
   targets.genericLinux.enable = true;
 
-  dconf.settings =
-    let
-      # Custom Gnome shortcut keybindings
-      shortcuts = {
-        "org/gnome/settings-daemon/plugins/media-keys" = {
-          control-center = [ "<Super>s" ];
-          custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/" ];
-          www = [ "<Super>f" ];
-        };
-        "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+  dconf.settings = let
+    # Custom Gnome shortcut keybindings
+    shortcuts = {
+      "org/gnome/settings-daemon/plugins/media-keys" = {
+        control-center = [ "<Super>s" ];
+        custom-keybindings = [
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+        ];
+        www = [ "<Super>f" ];
+      };
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
+        {
           binding = "<Super>t";
           command = "blackbox";
           name = "Open Terminal";
         };
-        "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" =
+        {
           binding = "<Super>e";
           command = "flatpak run it.mijorus.smile";
           name = "Emoji Picker";
         };
+    };
+    # Blackbox settings
+    blackbox = {
+      "com/raggesilver/BlackBox" = {
+        command-as-login-shell = true;
+        custom-shell-command = "env nu";
+        use-custom-command = true;
+        font = "CaskaydiaCove Nerd Font Mono 11";
       };
-      # Blackbox settings
-      blackbox = {
-        "com/raggesilver/BlackBox" = {
-          command-as-login-shell = true;
-          custom-shell-command = "env nu";
-          use-custom-command = true;
-          font = "CaskaydiaCove Nerd Font Mono 11";
-        };
-      };
-    in
-    shortcuts // blackbox;
+    };
+  in shortcuts // blackbox;
 }

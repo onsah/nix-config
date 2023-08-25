@@ -1,8 +1,5 @@
-{ ...
-}:
+{ ... }:
 
 {
-  imports = [
-    ../../common/programs/starship.nix
-  ];
+  imports = [ ../../common/programs/starship.nix ];
 }
