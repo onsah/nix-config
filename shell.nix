@@ -12,6 +12,9 @@ in pkgs.mkShell {
       nixfmt ${users_dir}/**/*.nix shell.nix;
     }
 
+    export -f format;
+
     chmod +x ${scripts_dir}/set-user.nu;
+    chmod +x .git/hooks/pre-commit;
   '';
 }
