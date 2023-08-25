@@ -14,7 +14,8 @@ in pkgs.mkShell {
 
     export -f format;
 
-    chmod +x ${scripts_dir}/set-user.nu;
+    # Setup
+    chmod +x ${scripts_dir}/*.nu;
     chmod +x .git/hooks/pre-commit;
   '';
 }

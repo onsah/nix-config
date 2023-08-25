@@ -9,6 +9,7 @@ This repository contains Nix configuration for my devices.
 ```
 .
 ├── scripts
+├── hooks
 └── users/
     ├── common/
     │   └── programs
@@ -17,12 +18,18 @@ This repository contains Nix configuration for my devices.
         └── home.nix
 ```
 * `scripts`: Scripts to execute configurations.
+* `hooks`: Git hooks.
 * `users`: List of user configs.
   * `$user`
     * `home.nix`: [Home Manager](https://nix-community.github.io/home-manager/) entry to the configuration.
     * `programs`: Program configurations.
   * `common`: Configurations used accross users
     * `programs`: Program configurations.
+
+## Setup
+You need to run setup for one time setup. It's needed for git hooks etc.
+
+In nix shell, run `./scripts/setup.nu`.
 
 ## Usage
 
