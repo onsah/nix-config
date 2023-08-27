@@ -1,7 +1,7 @@
 
 
 # Make VS Code accessible from terminal
-alias code="open -a 'Visual Studio Code.app'"
+# alias code="open -a 'Visual Studio Code.app'"
 
 # Add Homebrew to PATH
 eval "$(/opt/homebrew/bin/brew shellenv)"

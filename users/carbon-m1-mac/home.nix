@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ ../common/programs ];
+  imports = [ ../common/programs ./programs ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -17,7 +17,13 @@
   # release notes.
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
-  home.packages = with pkgs; [ gnumake ];
+  home.packages = with pkgs; [
+    gnumake
+    (pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+  ];
+
+  # TODO: Filter for specific packages such as vs code
+  nixpkgs.config.allowUnfree = true;
 
   home.file = { ".config/git/config".source = git/config; };
 
@@ -27,6 +33,12 @@
     in lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       $DRY_RUN_CMD /opt/homebrew/bin/brew bundle --file ${brewfile} --no-lock
     '';
+    fontsHook =
+      let nerdfonts = (pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; });
+      in lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        # $DRY_RUN_CMD rm -r ~/Library/Fonts/NerdFonts/
+        # $DRY_RUN_CMD cp -r ${nerdfonts}/share/fonts/truetype/NerdFonts ~/Library/Fonts/
+      '';
   };
 
   programs.home-manager.enable = true;
