@@ -16,6 +16,6 @@ in pkgs.mkShell {
 
     # Setup
     chmod +x ${scripts_dir}/*.nu;
-    chmod +x .git/hooks/pre-commit;
+    chmod +x ${project_root}/hooks/pre-commit;
   '';
 }

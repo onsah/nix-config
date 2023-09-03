@@ -24,5 +24,12 @@ in {
       nextcloudPath = "/Muzik";
       localPath = "/home/aiono/Documents/MusicNotes";
     })
+    (nextcloud-sync-service {
+      inherit pkgs;
+      name = "bozuk-akor-podcast-notes";
+      description = "Bozuk Akor Podcast";
+      nextcloudPath = "/BozukAkorPodcast";
+      localPath = "/home/aiono/Documents/BozukAkorPodcast";
+    })
   ]);
 }
