@@ -43,6 +43,8 @@
 
   programs.home-manager.enable = true;
 
+  programs.bash = { enable = true; };
+
   programs.zsh = {
     enable = true;
     initExtra = (builtins.readFile zsh/.zshrc);
@@ -58,5 +60,8 @@
     enableZshIntegration = true;
   };
 
-  programs.starship = { enableZshIntegration = true; };
+  programs.starship = {
+    enableZshIntegration = true;
+    enableBashIntegration = true;
+  };
 }
