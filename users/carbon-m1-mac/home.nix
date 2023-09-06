@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ ../common/programs ./programs ];
+  imports = [ ../common/programs ./programs ./sleepwatcher ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -25,16 +25,8 @@
   # TODO: Filter for specific packages such as vs code
   nixpkgs.config.allowUnfree = true;
 
-  home.file = { 
+  home.file = {
     ".config/git/config".source = git/config;
-    ".config/sleepwatcher/sleep" = {
-      executable = true;
-      source = sleepwatcher/sleep;
-    };
-    ".config/sleepwatcher/wakeup" = {
-      executable = true;
-      source = sleepwatcher/wakeup;
-    };
   };
 
   home.activation = {
@@ -73,28 +65,5 @@
   programs.starship = {
     enableZshIntegration = true;
     enableBashIntegration = true;
-  };
-
-  # TODO: Refactor sleepwatcher config to a different file
-  launchd = {
-    enable = true;
-    agents = {
-      sleepwatcher = {
-        enable = true;
-        config = {
-          Label = "Sleepwatcher";
-          ProgramArguments = [
-            "/opt/homebrew/sbin/sleepwatcher"
-            "--sleep" 
-            "~/.config/sleepwatcher/sleep"
-            "--wakeup" 
-            "~/.config/sleepwatcher/wakeup"
-          ];
-          RunAtLoad = true;
-          KeepAlive = true;
-          StandardErrorPath = /Users/onur/sleepwatcher.log;
-        };
-      };
-    };
   };
 }
