@@ -25,9 +25,7 @@
   # TODO: Filter for specific packages such as vs code
   nixpkgs.config.allowUnfree = true;
 
-  home.file = {
-    ".config/git/config".source = git/config;
-  };
+  home.file = { ".config/git/config".source = git/config; };
 
   home.activation = {
     brewBundleHook = let

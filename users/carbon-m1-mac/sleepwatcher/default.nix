@@ -12,7 +12,7 @@
       executable = true;
       source = ./wakeup;
     };
-  }; 
+  };
 
   launchd = {
     enable = true;
