@@ -11,4 +11,7 @@
 	editor = code --wait
 
 [diff]
-    tool = code --wait --diff $LOCAL $REMOTE
+  tool = vscode
+  
+[difftool "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE
