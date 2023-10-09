@@ -24,7 +24,7 @@
 
   home.sessionVariables = {
     # Some aws commands need this. It's okay to default to us-east-1 because that's where our alpha infra lies.
-    AWS_REGION="us-east-1";
+    AWS_REGION = "us-east-1";
     # Assume role timeout in carbonhealth-aws
     AWS_ASSUME_ROLE_TTL = "1h";
   };
