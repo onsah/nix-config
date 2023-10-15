@@ -1,5 +1,7 @@
 { pkgs, lib, ... }:
-let nextcloud-sync-service = import ./nextcloud-sync-service.nix;
+let
+  nextcloud-sync-service = import ./nextcloud-sync-service.nix;
+  nix-store-cleanup-service = import ./nix-store-cleanup-service.nix;
 in {
   systemd.user = (lib.lists.foldl (lib.attrsets.recursiveUpdate) { } [
     ({ startServices = true; })
@@ -31,5 +33,6 @@ in {
       nextcloudPath = "/BozukAkorPodcast";
       localPath = "/home/aiono/Documents/BozukAkorPodcast";
     })
+    (nix-store-cleanup-service { inherit pkgs; })
   ]);
 }
