@@ -10,7 +10,7 @@ in {
       Service = {
         Type = "simple";
         ExecStart =
-          "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --user ${credentials.nextcloud.username} --password ${credentials.nextcloud.password} --path ${nextcloudPath} ${localPath} https://nextcloud.aiono.dev";
+          "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --user ${credentials.nextcloud.username} --password ${credentials.nextcloud.password} --path '${nextcloudPath}' '${localPath}' https://nextcloud.aiono.dev";
         TimeoutStopSec = "180";
         KillMode = "process";
         KillSignal = "SIGINT";
