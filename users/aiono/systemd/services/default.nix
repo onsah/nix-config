@@ -33,6 +33,13 @@ in {
       nextcloudPath = "/BozukAkorPodcast";
       localPath = "/home/aiono/Documents/BozukAkorPodcast";
     })
+    (nextcloud-sync-service {
+      inherit pkgs;
+      name = "essentials-of-pls-notes";
+      description = "Essentials of Programming Languages Course Notes";
+      nextcloudPath = "/Freiburg/Courses/Fall Semester/Essentials of Programming Languages/Notes";
+      localPath = "/home/aiono/Documents/Courses/Essentials of Programming Languages/Notes";
+    })
     (nix-store-cleanup-service { inherit pkgs; })
   ]);
 }
