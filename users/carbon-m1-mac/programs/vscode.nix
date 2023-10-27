@@ -5,6 +5,7 @@
     enable = true;
     userSettings = {
       "terminal.integrated.fontFamily" = "'CaskaydiaCove Nerd Font Mono'";
+      "terminal.integrated.defaultProfile.osx" = "zsh";
     };
   };
 }
