@@ -20,6 +20,7 @@
   home.packages = with pkgs; [
     gnumake
     (pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+    subversion
   ];
 
   home.sessionVariables = {
