@@ -17,11 +17,14 @@
   # release notes.
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
-  home.packages = with pkgs; [
-    gnumake
-    (pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; })
-    subversion
-  ];
+  home.packages = with pkgs;
+    let
+      fontPackages = [
+        (pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+        # I use this for my typst formulas
+        pkgs.xits-math
+      ];
+    in [ gnumake subversion ] ++ fontPackages;
 
   home.sessionVariables = {
     # Some aws commands need this. It's okay to default to us-east-1 because that's where our alpha infra lies.
@@ -77,4 +80,6 @@
     enableZshIntegration = true;
     enableBashIntegration = true;
   };
+
+  fonts.fontconfig.enable = true;
 }
