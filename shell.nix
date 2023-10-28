@@ -7,15 +7,5 @@ in pkgs.mkShell {
   nativeBuildInputs = with pkgs; [ nushell nixfmt ];
   shellHook = ''
     export PROJECT_ROOT=${project_root};
-
-    function format {
-      nixfmt ${users_dir}/**/*.nix shell.nix;
-    }
-
-    export -f format;
-
-    # Setup
-    chmod +x ${scripts_dir}/*.nu;
-    chmod +x ${project_root}/hooks/pre-commit;
   '';
 }
