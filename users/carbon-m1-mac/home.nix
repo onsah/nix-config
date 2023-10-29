@@ -24,7 +24,16 @@
         # I use this for my typst formulas
         pkgs.xits-math
       ];
-    in [ gnumake subversion ] ++ fontPackages;
+      myD2 = d2.overrideAttrs (old: {
+        src = pkgs.fetchFromGitHub {
+          owner = "terrastruct";
+          repo = "d2";
+          # Temporary use until fixes are being released
+          rev = "d09024e22d7119058493e85a335dfbfb26b18a81";
+          hash = "sha256-tB7SzUkAvJFW6h/nBKdh1pUz4zGih6+9O7DOs894xU4=";
+        };
+      });
+    in [ gnumake subversion myD2 ] ++ fontPackages;
 
   home.sessionVariables = {
     # Some aws commands need this. It's okay to default to us-east-1 because that's where our alpha infra lies.
