@@ -3,6 +3,9 @@ let
   nixSettings = {
     "nix.enableLanguageServer" = true;
     "nix.serverPath" = "nil";
+    "nix.serverSettings" = {
+      nil = { formatting = { command = [ "nixfmt" ]; }; };
+    };
   };
 in {
   programs.vscode = {
