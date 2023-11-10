@@ -1,0 +1,10 @@
+#!/usr/bin/env nu
+
+def main [
+    n_generations_keep: int = 3,
+    n_days_collect_garbage: int =7,
+] {
+    nix-env --delete-generations $"+($n_generations_keep)";
+    nix-collect-garbage --delete-older-than $"($n_days_collect_garbage)d"
+    nix-store --optimise;
+}
