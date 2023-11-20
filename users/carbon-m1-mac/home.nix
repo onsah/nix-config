@@ -33,7 +33,7 @@
           hash = "sha256-tB7SzUkAvJFW6h/nBKdh1pUz4zGih6+9O7DOs894xU4=";
         };
       });
-    in [ gnumake subversion myD2 typst graphviz nil lf ] ++ fontPackages;
+    in [ gnumake subversion myD2 typst graphviz nil lf nnn ] ++ fontPackages;
 
   home.sessionVariables = {
     # Some aws commands need this. It's okay to default to us-east-1 because that's where our alpha infra lies.
