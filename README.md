@@ -2,9 +2,9 @@
 This repository contains Nix configuration for my devices.
 
 ## Prerequisites
-* Nix Setup
-* Home Manager Setup
-* Direnv
+* [Nix Package Manager](https://nixos.wiki/wiki/Nix_Installation_Guide)
+* [Home Manager Setup](https://nix-community.github.io/home-manager/index.html#ch-installation)
+* [direnv](https://direnv.net/docs/installation.html)
 
 ## Project File Structure
 ```
@@ -35,10 +35,8 @@ In [nix shell](#entering-to-nix-shell), run `./scripts/setup.nu`.
 ### Entering to `nix-shell`
 
 #### For the first time (Before setting up the user)
-Prerequisites:
-* `direnv` with `nix-direnv` enabled. 
 
-Run `direnv allow` to enter to the `nix-shell`.
+Run `nix-shell` in the root of the project.
 
 #### After you have set your user
 1. `cd` into the project root.
