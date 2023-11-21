@@ -1,0 +1,5 @@
+- Install `brew` via nix
+- Figure out where to document
+- M1 Mac
+  - Background job to cleanup Nix Store.
+  - Cleanup D2
