@@ -1,8 +1,5 @@
-{ ... }:
-{
-  programs.nnn = {
-    enable = true;
-  };
+{ ... }: {
+  programs.nnn = { enable = true; };
   home.sessionVariables = {
     # nnn file manager flags
     # H: show hidden files
