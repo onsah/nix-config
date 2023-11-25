@@ -8,5 +8,3 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Add AWS CLI to PATH
 path+='/Users/onur/aws-cli/bin'
-
-source ../programs/nnn/ncd.sh

@@ -1,5 +1,5 @@
 # Interactive cd (depends on nnn)
-ncd () {
+export ncd () {
     # Block nesting of nnn in subshells
     [ "${NNNLVL:-0}" -eq 0 ] || {
         echo "nnn is already running"
