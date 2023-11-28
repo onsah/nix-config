@@ -2,7 +2,9 @@
   programs.nnn = { enable = true; };
   home.sessionVariables = {
     # nnn file manager flags
-    # H: show hidden files
-    NNN_OPTS = "H";
+    # See https://github.com/jarun/nnn/wiki/Usage#configuration for more information.
+    # H: Show hidden files
+    # A: No auto-enter during filter
+    NNN_OPTS = "HA";
   };
 }
