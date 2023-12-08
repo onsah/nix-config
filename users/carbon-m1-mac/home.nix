@@ -20,7 +20,7 @@
   home.packages = with pkgs;
     let
       fontPackages = [
-        (pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+        (pkgs.nerdfonts.override { fonts = [ "CascadiaCode" "DejaVuSansMono" ]; })
         # I use this for my typst formulas
         pkgs.xits-math
       ];
