@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -15,6 +15,10 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "vscode"
+  ];
+  
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
@@ -34,6 +38,7 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    pkgs.vscode
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -76,6 +81,7 @@
   dconf.settings = {
     "org/gnome/mutter" = {
       experimental-features = ["scale-monitor-framebuffer"];
+      dynamic-workspaces = true;
     };
   };
 }
