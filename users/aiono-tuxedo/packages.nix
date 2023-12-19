@@ -1,4 +1,4 @@
-{ pkgs, lib, ... } :
+{ pkgs, lib, ... }:
 
 {
   # The home.packages option allows you to install Nix packages into your
