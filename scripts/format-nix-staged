@@ -1,0 +1,24 @@
+#!/usr/bin/env nu
+
+# Formats '.nix' files that are staged
+def main [] {
+    let staged_nix_files = (
+        git diff --cached --name-only --diff-filter=ACMR | 
+        split row "\n" | 
+        filter { |$path| $path | str contains ".nix"}
+    );
+    let modified_files = (
+        (run-external --redirect-stdout git status "-s" "--porcelain") 
+        | split row "\n"
+        | filter {|it| ($it | str substring 0..2) == "MM"}
+    );
+    $staged_nix_files | each { |$path|
+        if ($modified_files | any {|it| $it | str contains $path}) {
+            print $"Please stage your changes for file '($path)' otherwise formatter would overwrite your changes!";
+            exit 1
+        } else {
+            run-external nixfmt $"($env.PROJECT_ROOT)/($path)";
+            git add $"($env.PROJECT_ROOT)/($path)";
+        };
+    } | ignore;
+}

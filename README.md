@@ -56,7 +56,7 @@ set-user $USER
 ```
 
 ### Formatting
-`format`
+`format-nix-staged`
 
 You don't need to do it manually as it runs automatically pre commit after [setup](#setup).
 
