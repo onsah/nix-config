@@ -1,7 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ ./packages.nix ../common/programs ../common/linux.nix ];
+  imports =
+    [ ./packages.nix ../common/programs ../common/linux.nix ../common/gnome ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
