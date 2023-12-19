@@ -1,6 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
+  imports = [ ../common/programs ../common/linux.nix ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "aiono";
@@ -15,10 +17,9 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "vscode"
-  ];
-  
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [ "vscode" ];
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
@@ -73,6 +74,7 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
+    NIXOS_OZONE_WL = 1;
   };
 
   # Let Home Manager install and manage itself.
@@ -80,7 +82,7 @@
 
   dconf.settings = {
     "org/gnome/mutter" = {
-      experimental-features = ["scale-monitor-framebuffer"];
+      experimental-features = [ "scale-monitor-framebuffer" ];
       dynamic-workspaces = true;
     };
   };
