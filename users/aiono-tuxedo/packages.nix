@@ -25,5 +25,5 @@
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [ "vscode" "spotify" ];
+    builtins.elem (lib.getName pkg) [ "vscode" "spotify" "obsidian" ];
 }

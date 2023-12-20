@@ -1,5 +1,5 @@
 { ... }:
 
 {
-  imports = [ ./blackbox.nix ];
+  imports = [ ./blackbox.nix ./obsidian.nix ];
 }
