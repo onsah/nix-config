@@ -3,6 +3,7 @@
 {
   imports = [
     ./programs
+    ./systemd
     ./packages.nix
     ../common/programs
     ../common/linux.nix
