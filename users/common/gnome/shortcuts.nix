@@ -23,6 +23,7 @@
         lib.gvariant.mkArray [ "<Control><Super>Right" ];
       switch-to-workspace-left =
         lib.gvariant.mkArray [ "<Control><Super>Left" ];
+      close = [ "<Control>q" ];
     };
     "org/gnome/shell/keybindings" = {
       toggle-overview = lib.gvariant.mkArray [ "<Control><Super>Down" ];
