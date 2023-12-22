@@ -1,8 +1,8 @@
-{ ... }:
+{ lib, ... }:
 
 {
   programs.bash = {
     enable = true;
-    bashrcExtra = "";
+    bashrcExtra = lib.concatStrings [ (builtins.readFile nnn/ncd.sh) ];
   };
 }
