@@ -20,10 +20,17 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    vscode
     spotify
+    discord
+    zoom-us
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [ "vscode" "spotify" "obsidian" ];
+    builtins.elem (lib.getName pkg) [
+      "vscode"
+      "spotify"
+      "obsidian"
+      "discord"
+      "zoom"
+    ];
 }

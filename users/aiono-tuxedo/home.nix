@@ -5,6 +5,7 @@
     ./programs
     ./systemd
     ./packages.nix
+    ./fonts.nix
     ../common/programs
     ../common/linux.nix
     ../common/gnome
