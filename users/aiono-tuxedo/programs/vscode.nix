@@ -21,5 +21,15 @@
         "editor.fontFamily" = "'DejaVuSansM Nerd Font'";
       };
     in terminalSettings // otherSettings;
+    keybindings = [
+      {
+        key = "ctrl+[";
+        command = "workbench.action.navigateBackInNavigationLocations";
+      }
+      {
+        key = "ctrl+]";
+        command = "workbench.action.navigateForwardInNavigationLocations";
+      }
+    ];
   };
 }
