@@ -56,7 +56,7 @@
   #  /etc/profiles/per-user/aiono/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    # Launch VSCode in Wayland
     NIXOS_OZONE_WL = 1;
   };
 
