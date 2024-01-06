@@ -20,7 +20,7 @@ in {
         name = "verification-of-digital-circuits-notes";
         description = "Verification of Digital Circuits Notes";
         nextcloudPath =
-          "/Freiburg/Courses/Fall Semester/Verification of Digital Circuits";
+          "/Freiburg/Courses/Fall Semester/Verification of Digital Circuits/Notes";
         localPath =
           "/home/aiono/Documents/Master/Courses/Verification of Digital Circuits/Notes";
       })
