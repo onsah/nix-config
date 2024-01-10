@@ -133,4 +133,7 @@
     tailor-gui.enable = true;
   };
 
+  # https://nixos.wiki/wiki/Storage_optimization#Automatic
+  nix.settings.auto-optimise-store = true;
+
 }
