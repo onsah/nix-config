@@ -16,6 +16,7 @@
   environment.sessionVariables = {
     # https://wiki.archlinux.org/title/Hardware_video_acceleration#Configuring_VA-API
     # To use `intel-media-driver`
+    # TODO: Parse the library name instead of hardcoding
     LIBVA_DRIVER_NAME = "iHD";
   };
 }
