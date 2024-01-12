@@ -22,7 +22,6 @@
     # '')
     spotify
     discord
-    zoom-us
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
