@@ -3,5 +3,5 @@
     "silent"
   ],
   "leds": [],
-  "performance_profile": null
+  "performance_profile": "power_saving"
 }

@@ -8,6 +8,7 @@
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./video-acceleration.nix
+    ./power-management.nix
     ./tuxedo-control
   ];
 
