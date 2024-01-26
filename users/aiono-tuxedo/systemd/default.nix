@@ -24,5 +24,12 @@ in {
         localPath =
           "/home/aiono/Documents/Master/Courses/Verification of Digital Circuits/Notes";
       })
+      (nextcloud-sync-service {
+        inherit pkgs;
+        name = "programming-notes";
+        description = "Programming Notes";
+        nextcloudPath = "/Programming/Notes";
+        localPath = "/home/aiono/Documents/NextcloudSynced/Programming/Notes";
+      })
     ]);
 }
