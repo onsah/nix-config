@@ -7,4 +7,7 @@ def main [
     nix-env --delete-generations $"+($n_generations_keep)";
     nix-collect-garbage --delete-older-than $"($n_days_collect_garbage)d"
     nix-store --optimise;
+    
+    print "Running 'sudo nixos-rebuild switch' to update boot entries...";
+    sudo nixos-rebuild switch;
 }
