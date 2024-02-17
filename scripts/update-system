@@ -1,0 +1,9 @@
+#!/usr/bin/env nu
+def main [] {
+    print "updating home manager packages...";
+    nix-channel --update;
+    home-manager switch;
+    print "updating system packages... (Needs sudo)";
+    sudo nix-channel --update;
+    sudo nixos-rebuild switch;
+}
