@@ -77,6 +77,17 @@
     #media-session.enable = true;
   };
 
+  # Blueooth audio codecs that doesn't suck when listening to music
+  environment.etc = {
+    "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
+      bluez_monitor.properties = {
+        ["bluez5.enable-sbc-xq"] = true,
+        ["bluez5.enable-msbc"] = true,
+        ["bluez5.headset-roles"] = "[ hfp_hf hsp_hs a2dp_sink ]"
+      }
+    '';
+  };
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
