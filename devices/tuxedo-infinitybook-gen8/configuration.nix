@@ -78,6 +78,13 @@
   };
 
   # Blueooth audio codecs that doesn't suck when listening to music
+  # I don't understand the config, but it works.
+  # As far as I understand it basically enables high quality codecs 
+  # which are not enabled by default.
+  # See:
+  # - https://nixos.wiki/wiki/PipeWire#Bluetooth_Configuration
+  # - https://www.reddit.com/r/NixOS/comments/k5ujcs/anyone_have_acceptable_voice_quality_over/
+  # - https://wiki.archlinux.org/title/PipeWire#Low_audio_quality_on_Bluetooth
   environment.etc = {
     "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
       bluez_monitor.properties = {
