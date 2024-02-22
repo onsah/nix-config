@@ -14,5 +14,9 @@ in {
       root = ./etc/fan;
       fileset = ./etc/fan;
     };
+    "tailord/keyboard".source = fileset.toSource {
+      root = ./etc/keyboard;
+      fileset = ./etc/keyboard;
+    };
   };
 }
