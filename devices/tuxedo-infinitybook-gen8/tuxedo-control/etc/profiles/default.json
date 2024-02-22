@@ -2,6 +2,12 @@
   "fans": [
     "default"
   ],
-  "leds": [],
+  "leds":[
+    {
+      "device_name": "platform:tuxedo_keyboard",
+      "function": "kbd_backlight",
+      "profile": "default"
+    }
+  ],
   "performance_profile": null
 }
