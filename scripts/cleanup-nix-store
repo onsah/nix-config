@@ -4,10 +4,14 @@ def main [
     n_generations_keep: int = 3,
     n_days_collect_garbage: int =7,
 ] {
+    # Delete home-manager generations
     nix-env --delete-generations $"+($n_generations_keep)";
+    # Delete old system generations
+    print "Need sudo to delete old system generations:";
+    sudo nix-env -p /nix/var/nix/profiles/system --delete-generations $"+($n_generations_keep)";
     nix-collect-garbage --delete-older-than $"($n_days_collect_garbage)d"
     nix-store --optimise;
     
-    print "Running 'sudo nixos-rebuild switch' to update boot entries...";
+    print "Need sudo to update boot entries:";
     sudo nixos-rebuild switch;
 }
