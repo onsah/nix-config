@@ -157,4 +157,12 @@
     options = "--delete-older-than 7d";
   };
 
+  # Printing
+  # See: https://nixos.wiki/wiki/Printing
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    openFirewall = true;
+  };
+
 }
