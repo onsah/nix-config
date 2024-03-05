@@ -31,5 +31,12 @@ in {
         nextcloudPath = "/Programming/Notes";
         localPath = "/home/aiono/Documents/NextcloudSynced/Programming/Notes";
       })
+      (nextcloud-sync-service {
+        inherit pkgs;
+        name = "politics-notes";
+        description = "Politics Notes";
+        nextcloudPath = "/Politics";
+        localPath = "/home/aiono/Documents/NextcloudSynced/Politics";
+      })
     ]);
 }
