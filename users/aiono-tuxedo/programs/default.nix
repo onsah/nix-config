@@ -8,5 +8,6 @@
     ./git.nix
     ./newsflash.nix
     ./shortwave.nix
+    ./dialect.nix
   ];
 }
