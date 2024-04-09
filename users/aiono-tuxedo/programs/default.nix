@@ -9,5 +9,6 @@
     ./newsflash.nix
     ./shortwave.nix
     ./dialect.nix
+    ./apostrophe.nix
   ];
 }
