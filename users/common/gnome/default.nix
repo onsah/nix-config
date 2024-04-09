@@ -1,1 +1,1 @@
-{ ... }: { imports = [ ./shortcuts.nix ]; }
+{ ... }: { imports = [ ./shortcuts.nix ./multitasking.nix ]; }
