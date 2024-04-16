@@ -10,5 +10,6 @@
     ./shortwave.nix
     ./dialect.nix
     ./apostrophe.nix
+    ./tuba.nix
   ];
 }
