@@ -45,5 +45,13 @@ in {
         nextcloudPath = "/German";
         localPath = "/home/aiono/Documents/NextcloudSynced/German";
       })
+      (nextcloud-sync-service {
+        inherit pkgs;
+        name = "software-engineering-notes";
+        description = "Software Engineering Course Notes";
+        nextcloudPath =
+          "/Freiburg/Courses/Spring Semester/Software Engineering";
+        localPath = "/home/aiono/Documents/Master/Courses/software-engineering";
+      })
     ]);
 }
