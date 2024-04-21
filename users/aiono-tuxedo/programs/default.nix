@@ -11,5 +11,6 @@
     ./dialect.nix
     ./apostrophe.nix
     ./tuba.nix
+    ./errands.nix
   ];
 }
