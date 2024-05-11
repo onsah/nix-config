@@ -12,5 +12,6 @@
     ./apostrophe.nix
     ./tuba.nix
     ./errands.nix
+    ./gnome-boxes.nix
   ];
 }
