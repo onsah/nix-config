@@ -51,7 +51,8 @@ in {
         description = "Software Engineering Course Notes";
         nextcloudPath =
           "/Freiburg/Courses/Spring Semester/Software Engineering";
-        localPath = "/home/aiono/Documents/Master/Courses/software-engineering";
+        localPath =
+          "/home/aiono/Documents/Master/Courses/software-engineering/Notes";
       })
     ]);
 }
