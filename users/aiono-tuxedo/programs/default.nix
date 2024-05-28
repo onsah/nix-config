@@ -13,5 +13,6 @@
     ./tuba.nix
     ./errands.nix
     ./gnome-boxes.nix
+    ./denaro.nix
   ];
 }
