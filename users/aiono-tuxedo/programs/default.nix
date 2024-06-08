@@ -11,7 +11,6 @@
     ./dialect.nix
     ./apostrophe.nix
     ./tuba.nix
-    ./errands.nix
     ./gnome-boxes.nix
     ./denaro.nix
     ./planify.nix
