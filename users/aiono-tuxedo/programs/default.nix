@@ -14,5 +14,6 @@
     ./errands.nix
     ./gnome-boxes.nix
     ./denaro.nix
+    ./planify.nix
   ];
 }
