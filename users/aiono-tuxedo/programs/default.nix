@@ -14,5 +14,6 @@
     ./gnome-boxes.nix
     ./denaro.nix
     ./planify.nix
+    ./hieroglyphic.nix
   ];
 }
