@@ -1,5 +1,4 @@
 { pkgs, ... }:
 
-{
-  home.packages = [ pkgs.apostrophe ];
-}
+let unstablePkgs = import <nixpkgs-unstable> { };
+in { home.packages = [ unstablePkgs.apostrophe ]; }
