@@ -15,5 +15,6 @@
     ./denaro.nix
     ./planify.nix
     ./hieroglyphic.nix
+    ./papers.nix
   ];
 }
