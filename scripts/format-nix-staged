@@ -8,7 +8,7 @@ def main [] {
         filter { |$path| $path | str contains ".nix"}
     );
     let modified_files = (
-        (run-external --redirect-stdout git status "-s" "--porcelain") 
+        (run-external git status "-s" "--porcelain") 
         | split row "\n"
         | filter {|it| ($it | str substring 0..2) == "MM"}
     );
