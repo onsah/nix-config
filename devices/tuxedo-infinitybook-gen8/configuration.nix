@@ -5,10 +5,12 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./video-acceleration.nix
     ./power-management.nix
+    ./eduroam.nix
     ./tuxedo-control
   ];
 
@@ -95,6 +97,10 @@
     '';
   };
 
+  environment = {
+
+  };
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -102,7 +108,10 @@
   users.users.aiono = {
     isNormalUser = true;
     description = "Onur Sahin";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       firefox
       git
@@ -115,11 +124,11 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs;
-    [
-      #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      #  wget
-    ];
+  environment.systemPackages = with pkgs; [
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
+    OVMF
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -165,4 +174,9 @@
     openFirewall = true;
   };
 
+  # Enable virtualization
+  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.qemu.ovmf = {
+    enable = true;
+  };
 }
