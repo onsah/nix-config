@@ -1,1 +1,8 @@
-{ ... }: { imports = [ ./shortcuts.nix ./multitasking.nix ]; }
+{ ... }:
+{
+  imports = [
+    ./shortcuts.nix
+    ./multitasking.nix
+    ./audio.nix
+  ];
+}
