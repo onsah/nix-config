@@ -9,5 +9,8 @@
         "copilot": false,
         "inline_completion_provider": "none"
     },
-    "auto_update": false
+    "auto_update": false,
+    "shell": {
+      "program": "bash"
+    }
 }

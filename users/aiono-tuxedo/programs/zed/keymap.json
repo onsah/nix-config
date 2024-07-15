@@ -1,0 +1,16 @@
+[
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-[": "pane::GoBack",
+      "ctrl-]": "pane::GoForward",
+      "ctrl-up": "editor::MoveToBeginning",
+      "ctrl-down": "editor::MoveToEnd",
+      "alt-left": "editor::MoveToBeginningOfLine",
+      "alt-right": "editor::MoveToEndOfLine",
+      "ctrl-c": "editor::Copy",
+      "ctrl-v": "editor::Paste",
+      "ctrl-shift-.": "project_symbols::Toggle"
+    }
+  }
+]
