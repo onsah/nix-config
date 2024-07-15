@@ -15,6 +15,7 @@
     ./planify.nix
     ./hieroglyphic.nix
     ./papers.nix
+    ./nixd.nix
     ./zed
   ];
 }
