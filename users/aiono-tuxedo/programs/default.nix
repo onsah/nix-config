@@ -16,6 +16,7 @@
     ./hieroglyphic.nix
     ./papers.nix
     ./nixd.nix
+    ./translate.nix
     ./zed
   ];
 }
