@@ -10,7 +10,7 @@
       "end": "editor::MoveToEndOfLine",
       "ctrl-c": "editor::Copy",
       "ctrl-v": "editor::Paste",
-      "ctrl-shift-.": "project_symbols::Toggle"
+      "ctrl-shift-a": "project_symbols::Toggle"
     }
   }
 ]
