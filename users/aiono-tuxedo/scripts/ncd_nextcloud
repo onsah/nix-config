@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+NC_DAV_URL="davs://nextcloud.aiono.dev/remote.php/webdav/"
+# Get local path
+GIO_INFO=$(gio info "$NC_DAV_URL" --attributes="" 2>/dev/null)
+LOCAL_PATH=$(echo "$GIO_INFO" | grep "local path:")
+# Get the string after the first `:`
+# `xargs` trims the leading and trailing whitespace
+DAV_PATH="$(${LOCAL_PATH#*:} | xargs)"
+
+ncd "$DAV_PATH"

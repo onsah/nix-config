@@ -1,8 +1,14 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
     ./programs
+    ./scripts
     ./systemd
     ./packages.nix
     ./fonts.nix
@@ -62,8 +68,7 @@
     NIXOS_OZONE_WL = 1;
     # Location to my self-hosted nextcloud
     NC_DAV_URL = "davs://nextcloud.aiono.dev/remote.php/webdav/";
-    NC_PATH =
-      "/run/user/1000/gvfs/dav:host=nextcloud.aiono.dev,ssl=true,prefix=%2Fremote.php%2Fwebdav";
+    NC_PATH = "/run/user/1000/gvfs/dav:host=nextcloud.aiono.dev,ssl=true,prefix=%2Fremote.php%2Fwebdav";
   };
 
   # Let Home Manager install and manage itself.
