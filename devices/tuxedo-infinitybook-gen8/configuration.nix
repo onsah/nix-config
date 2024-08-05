@@ -18,6 +18,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # https://discussion.fedoraproject.org/t/random-system-shutdown-kernel-6-6-2/98030/8
+  # https://github.com/NixOS/nixos-hardware/issues/160#issuecomment-1336175175
+  boot.kernelParams = [ "i915.enable_guc=2" ];
+
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -81,7 +85,7 @@
 
   # Blueooth audio codecs that doesn't suck when listening to music
   # I don't understand the config, but it works.
-  # As far as I understand it basically enables high quality codecs 
+  # As far as I understand it basically enables high quality codecs
   # which are not enabled by default.
   # See:
   # - https://nixos.wiki/wiki/PipeWire#Bluetooth_Configuration
