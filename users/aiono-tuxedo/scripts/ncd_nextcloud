@@ -3,6 +3,19 @@
 NC_DAV_URL="davs://nextcloud.aiono.dev/remote.php/webdav/"
 # Get local path
 GIO_INFO=$(gio info "$NC_DAV_URL" --attributes="" 2>/dev/null)
+
+if [ $? -ne 0 ]; then
+    echo "Need to mount first. Please enter credentials...";
+    gio mount "$NC_DAV_URL";
+fi
+
+GIO_INFO=$(gio info "$NC_DAV_URL" --attributes="" 2>/dev/null)
+
+if [ $? -ne 0 ]; then
+    echo "Still couldn't get info after mount. Gave up.";
+    exit 1;
+fi
+
 LOCAL_PATH=$(echo "$GIO_INFO" | grep "local path:")
 # Get the string after the first `:`
 # `xargs` trims the leading and trailing whitespace
