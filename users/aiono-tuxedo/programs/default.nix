@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../../common/programs
     ./blackbox.nix
     ./obsidian.nix
     ./vscode.nix

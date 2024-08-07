@@ -13,8 +13,6 @@
     ./packages.nix
     ./fonts.nix
     ./nix.nix
-    ../common/programs
-    ../common/programs/zoom
     ../common/linux.nix
     ../common/gnome
   ];
