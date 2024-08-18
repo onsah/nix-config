@@ -18,6 +18,7 @@
     ./papers.nix
     ./nixd.nix
     ./translate.nix
+    ./clapper.nix
     ./zed
   ];
 }
