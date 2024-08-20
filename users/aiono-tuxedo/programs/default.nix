@@ -19,6 +19,7 @@
     ./nixd.nix
     ./translate.nix
     ./clapper.nix
+    ./zettlr.nix
     ./zed
   ];
 }
