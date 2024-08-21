@@ -1,15 +1,14 @@
 { pkgs, ... }:
 
 {
-  home.packages = [ pkgs.zettlr ];
-
-  xdg.configFile = {
-    "electron-flags.conf" = {
-      enable = true;
-      text = ''
-        --enable-features=UseOzonePlatform
-        --ozone-platform=wayland
+  home.packages = [
+    (pkgs.symlinkJoin {
+      name = "zettlr";
+      paths = [ pkgs.zettlr ];
+      buildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/zettlr --append-flags "--enable-features=UseOzonePlatform --ozone-platform=wayland"
       '';
-    };
-  };
+    })
+  ];
 }
