@@ -1,12 +1,11 @@
 {
-  "fans": [
-    "silent"
-  ],
-  "leds":[
+  "fans": ["silent"],
+  "leds": [
     {
       "device_name": "platform:tuxedo_keyboard",
       "function": "kbd_backlight",
-      "profile": "default"
+      "profile": "default",
+      "mode": "Rgb"
     }
   ],
   "performance_profile": "power_saving"
