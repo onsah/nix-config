@@ -49,6 +49,10 @@ After enabling `direnv` once, it will automatically enter to the `nix-shell` whe
 ### Prerequisites
 * [nix shell](#entering-to-nix-shell)
 
+### Setting device configuration
+Use `rebuild` script to set NIXOS configuration.
+It uses the pinned channel in the repository root.
+
 ### Setting configuration for a user
 For `$USER`, run:
 ```bash
