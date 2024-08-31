@@ -53,6 +53,11 @@ After enabling `direnv` once, it will automatically enter to the `nix-shell` whe
 Use `rebuild` script to set NIXOS configuration.
 It uses the pinned channel in the repository root.
 
+Example:
+```shell
+DEVICE_PATH=devices/tuxedo-infinitybook-gen8/ rebuild
+```
+
 ### Setting configuration for a user
 For `$USER`, run:
 ```bash
@@ -66,5 +71,3 @@ You don't need to do it manually as it runs automatically pre commit after [setu
 
 ### Cleaning up the Nix Store
 Unfortunately Nix Store accumulates garbage as it's being used, so occasionally one needs to cleanup the store. For now there is a script for it: `cleanup-nix-store`.
-
-TODO: In the future make it a background job.

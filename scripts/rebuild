@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# See: https://jade.fyi/blog/pinning-nixos-with-npins/
+# Based on: https://jade.fyi/blog/pinning-nixos-with-npins/
 
 cd $PROJECT_ROOT
 
@@ -8,8 +8,13 @@ cd $PROJECT_ROOT
 cmd=${1:-switch}
 shift
 
-nixpkgs_pin=$(nix eval --raw -f npins/default.nix nixpkgs)
-nix_path="nixpkgs=${nixpkgs_pin}:nixos-config=/etc/nixos/configuration.nix"
+device_path="${DEVICE_PATH?"required"}"
+device_path=$(realpath "$device_path")
+npins_path="$device_path/npins/default.nix"
+
+nixpkgs_pin=$(nix eval --raw -f $npins_path nixpkgs)
+configuration_path="$device_path/configuration.nix"
+nix_path="nixpkgs=${nixpkgs_pin}:nixos-config=$configuration_path"
 
 # without --fast, nixos-rebuild will compile nix and use the compiled nix to
 # evaluate the config, wasting several seconds
