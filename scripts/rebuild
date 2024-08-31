@@ -2,13 +2,39 @@
 
 # Based on: https://jade.fyi/blog/pinning-nixos-with-npins/
 
+help_text="usage: rebuild -d <device-path> <arguments>...
+options:
+  device-path:  Path for the system configuration. Must contain a 'configuration.nix' and an 'npins' directory.
+  arguments:    Are passed directly to 'nixos-rebuild'"
+
+while getopts "h,d:" arg; do
+  case $arg in
+    h)
+      echo "$help_text";
+      exit 0;
+      ;;
+    d)
+      device_path=${OPTARG};
+      shift 2;
+      ;;
+    *)
+      echo "unknown: $arg";
+  esac
+done
+
+if [ ! -d "$device_path" ]; then
+  echo "option '-d' (device path) is missing or invalid" >&2;
+  echo "$help_text";
+  exit 1;
+fi
+
 cd $PROJECT_ROOT
 
 # assume that if there are no args, you want to switch to the configuration
 cmd=${1:-switch}
 shift
 
-device_path="${DEVICE_PATH?"required"}"
+# device_path="${DEVICE_PATH?"required"}"
 device_path=$(realpath "$device_path")
 npins_path="$device_path/npins/default.nix"
 
