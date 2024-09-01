@@ -1,9 +1,10 @@
 #!/usr/bin/env nu
 
 def main [
+    device_path: string, # Path for the system configuration. Passed to 'build-system'.
     n_generations_keep: int = 3,
     n_days_collect_garbage: int =7,
-] {
+]: nothing -> nothing {
     # Delete home-manager generations
     nix-env --delete-generations $"+($n_generations_keep)";
     # Delete old system generations
@@ -11,7 +12,7 @@ def main [
     sudo nix-env -p /nix/var/nix/profiles/system --delete-generations $"+($n_generations_keep)";
     nix-collect-garbage --delete-older-than $"($n_days_collect_garbage)d"
     nix-store --optimise;
-    
+
     print "Need sudo to update boot entries:";
-    sudo nixos-rebuild switch;
+    build-system $device_path switch;
 }

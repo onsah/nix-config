@@ -6,7 +6,7 @@ def main [
   device_path: string, # Path for the system configuration. Must contain a 'configuration.nix' and an 'npins' directory.
   command: string = "switch", # Main command for 'nixos-rebuild'. 'switch' or 'dry-run'
   ...extra_args: string, # Passed to 'nixos-rebuild'
-] {
+]: nothing -> nothing {
 
   assert_dir $device_path;
 
