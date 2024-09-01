@@ -11,12 +11,13 @@ def main [
   assert_dir $device_path;
 
   let abs_device_path = ($device_path | path expand --strict);
+
   let npins_path = ($abs_device_path | path join npins default.nix);
+  let nixpkgs_pin = run-external "nix" "eval" "--raw" "-f" $npins_path "nixpkgs";
+
   let configuration_path = ($abs_device_path | path join configuration.nix);
 
-  let nixpkgs_pin = run-external "nix" "eval" "--raw" "-f" $npins_path "nixpkgs";
   let nix_path = $"nixpkgs=($nixpkgs_pin):nixos-config=($configuration_path)";
-
   with-env {
     NIX_PATH: $nix_path,
   } {
