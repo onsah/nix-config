@@ -1,0 +1,35 @@
+#!/usr/bin/env nu
+
+use std assert
+
+def main [
+  user_path: string, # Path for the user configuration. Must contain a 'home.nix' file and an 'npins' directory.
+  command: string = "switch", # Main command for 'home-manager'. 'switch' or 'dry-run'
+] {
+  assert_dir $user_path;
+
+  let abs_user_path = ($user_path | path expand --strict);
+
+  let npins_path = ($abs_user_path | path join npins default.nix);
+  let nixpkgs_pin = run-external "nix" "eval" "--raw" "-f" $npins_path "nixpkgs";
+  let nixpkgs_unstable_pin = run-external "nix" "eval" "--raw" "-f" $npins_path "nixpkgs-unstable";
+  let home_manager_pin = run-external "nix" "eval" "--raw" "-f" $npins_path "home-manager";
+
+  let home_manager_path = ($abs_user_path | path join home.nix);
+
+  with-env {
+    NIX_PATH: $"nixpkgs=($nixpkgs_pin):home-manager=($home_manager_pin):nixpkgs-unstable=($nixpkgs_unstable_pin)",
+  } {
+    home-manager $command -f $home_manager_path;
+  }
+}
+
+def assert_file [path: string] {
+  assert ($path | path exists) $"path '($path)' doesn't exit";
+  assert (($path | path type) == "file") $"path ($path) is not a directory";
+}
+
+def assert_dir [path: string] {
+  assert ($path | path exists) $"path '($path)' doesn't exit";
+  assert (($path | path type) == "dir") $"path ($path) is not a directory";
+}

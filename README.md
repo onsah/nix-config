@@ -55,13 +55,13 @@ It uses the pinned channel in the repository root.
 
 Example:
 ```shell
-build-system devices/tuxedo-infinitybook-gen8/
+build-device devices/tuxedo-infinitybook-gen8/
 ```
 
-### Setting configuration for a user
-For `$USER`, run:
+### Setting user configuration
+Example:
 ```bash
-set-user $USER
+build-user users/aiono-tuxedo
 ```
 
 ### Formatting
