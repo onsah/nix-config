@@ -1,0 +1,20 @@
+#!/usr/bin/env nu
+
+use std assert
+
+def main [
+  device_path: string, # Path for the system configuration. Must contain a an 'npins' directory.
+]: nothing -> nothing {
+  assert_dir $device_path;
+
+  let abs_device_path = ($device_path | path expand --strict);
+  let npins_path = ($abs_device_path | path join npins);
+  assert_dir $npins_path;
+
+  run-external npins update "-d" $npins_path;
+}
+
+def assert_dir [path: string] {
+  assert ($path | path exists) $"path '($path)' doesn't exit";
+  assert (($path | path type) == "dir") $"path ($path) is not a directory";
+}

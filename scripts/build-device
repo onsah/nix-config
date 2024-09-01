@@ -10,8 +10,6 @@ def main [
 
   assert_dir $device_path;
 
-  cd $env.PROJECT_ROOT;
-
   let abs_device_path = ($device_path | path expand --strict);
   let npins_path = ($abs_device_path | path join npins default.nix);
   let configuration_path = ($abs_device_path | path join configuration.nix);
