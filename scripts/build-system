@@ -19,7 +19,12 @@ def main [
   let nixpkgs_pin = run-external "nix" "eval" "--raw" "-f" $npins_path "nixpkgs";
   let nix_path = $"nixpkgs=($nixpkgs_pin):nixos-config=($configuration_path)";
 
-  run-external "sudo" "env" $"NIX_PATH=($nix_path)" "nixos-rebuild" $command "--fast" ...$extra_args
+  with-env {
+    NIX_PATH: $nix_path,
+  } {
+    # For some reason '--preserve-env=NIX_PATH' doesn't pass the env variable.
+    sudo "--preserve-env" "-u" $"(whoami)" "nixos-rebuild" $command "--fast" ...$extra_args
+  }
 }
 
 def assert_dir [path: string] {
