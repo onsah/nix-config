@@ -55,7 +55,7 @@ It uses the pinned channel in the repository root.
 
 Example:
 ```shell
-rebuild -d devices/tuxedo-infinitybook-gen8/
+build-system devices/tuxedo-infinitybook-gen8/
 ```
 
 ### Setting configuration for a user
