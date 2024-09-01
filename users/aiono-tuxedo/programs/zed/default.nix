@@ -1,12 +1,9 @@
 { pkgs, ... }:
 
 let
-  stagingNextPkgs =
-    import
-      (fetchTarball "https://github.com/NixOS/nixpkgs/tarball/614efe64e87d1450428e4fde0024eb784d06ba20")
-      { };
+  unstablePkgs = import <nixpkgs-unstable> { };
   # This lets zed to see installed language servers.
-  zed-fhs = stagingNextPkgs.buildFHSUserEnv {
+  zed-fhs = unstablePkgs.buildFHSUserEnv {
     name = "zed";
     targetPkgs = pkgs: [ pkgs.zed-editor ];
     runScript = "zed";
