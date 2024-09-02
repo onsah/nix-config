@@ -20,6 +20,7 @@
     ./translate.nix
     ./clapper.nix
     ./zettlr.nix
+    ./foliate.nix
     ./zed
   ];
 }
