@@ -28,5 +28,3 @@ function ncd () {
         rm -f "$NNN_TMPFILE" > /dev/null
     }
 }
-
-export -f ncd;

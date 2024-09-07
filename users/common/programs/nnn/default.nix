@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.nnn = {
     enable = true;
     extraPackages = with pkgs; [ unzip ];
