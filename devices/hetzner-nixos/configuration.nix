@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ./nextcloud.nix
       ./networking.nix
+      ./git.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -82,7 +83,6 @@
 
   environment.systemPackages = with pkgs; [
     openssl
-    git
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
