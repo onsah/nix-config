@@ -1,8 +1,19 @@
-{ config, ... }:
+{ config, pkgs, ... }:
+
+let blog = import ./blog.nix { 
+  fetchFromGitHub = pkgs.fetchFromGitHub; 
+  callPackage = pkgs.callPackage;
+}; in
 {
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
     forceSSL = true;
     enableACME = true;
+  };
+
+  services.nginx.virtualHosts.${blog.hostName} = {
+    enableACME = true;
+    forceSSL = true;
+    root = blog.root;
   };
 
   security.acme = {
