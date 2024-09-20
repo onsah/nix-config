@@ -4,6 +4,7 @@
   imports = [
     ../../common/programs
     ./blackbox.nix
+    ./chromium.nix
     ./obsidian.nix
     ./vscode.nix
     ./git.nix
