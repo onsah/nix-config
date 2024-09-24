@@ -67,6 +67,8 @@
     # Location to my self-hosted nextcloud
     NC_DAV_URL = "davs://nextcloud.aiono.dev/remote.php/webdav/";
     NC_PATH = "/run/user/1000/gvfs/dav:host=nextcloud.aiono.dev,ssl=true,prefix=%2Fremote.php%2Fwebdav";
+    # Ip address of my self hosted server
+    SELF_HOSTED_SERVER_IP_V4 = "159.69.94.155";
   };
 
   # Let Home Manager install and manage itself.
