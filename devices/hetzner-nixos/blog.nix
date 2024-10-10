@@ -4,8 +4,8 @@ let
   blog-src = fetchFromGitHub {
     owner = "onsah";
     repo = "my-static-site-generator";
-    rev = "902fbafbc0647629a71879f329d614206a515ff0";
-    hash = "sha256-460AnlYCU7g9/ZtfYc2j6hLF17+lEZJl75kCDjbTl9s=";
+    rev = "ddcb9c3888bd0214d584868e6af35a83d8072f4d";
+    hash = "sha256-pMmw57v2fgSbhwqcI9nim8qACf9yL9pwLP7xCmqd1F0=";
   };
   blog = callPackage "${blog-src}/build.nix" {};
 in
