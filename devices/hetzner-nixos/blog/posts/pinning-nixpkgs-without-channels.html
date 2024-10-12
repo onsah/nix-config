@@ -1,0 +1,151 @@
+<html><head>
+        <link rel="stylesheet" href="/style.css">
+        <title id="post-title"></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <header>
+    <nav>
+        <h2 class="title">Aiono</h2>
+        <div class="fill"></div>
+        <div class="links">
+            <a id="me" href="/index.html"><strong>Me</strong></a>
+            <a class="current" id="blog" href="/blog.html">Blog</a>
+            
+        </div>
+    </nav>
+</header>
+        <main class="container">
+            <hgroup>
+                <h1>Pinning Nixpkgs without Channels</h1>
+                <h4>
+                    Posted on 26 Sep 2024
+                </h4>
+            </hgroup>
+            <p><a href="">Nix Channels</a> is probably one of the most controversial parts of the <a href="">Nix</a>. While Nix claims to be fully reproducible, usually non <a href="">Flake</a> Nix derivations implicitly refers to a <a href="">nixpkgs</a> usually through a channel. This breaks the reproducibility promise because the version of nixpkgs depends on the environment that the derivation is being built.</p>
+<p>In this post I will show how you can get rid of channels and pin your nixpkgs for your derivations, <a href="">shells</a>, <a href="">NixOS configuration</a> and <a href="">home manager configurations</a>.</p>
+<h2 id="nix-channel-background">Nix Channel Background</h2>
+<p>Nix Channels are essentially URLs that point to a nixpkgs<sup><a href="#fn:1" id="fnref:1">1</a></sup>. Conventionally there are certain channels which are listed <a href="https://status.nixos.org/">here</a>. They are like package indexes in other package managers like <a href="">dnf</a> and <a href="">apt</a>. So essentially they allow conveniently updating all installed packages like one does in traditional package managers. Furthermore, having a global version of a dependency is also beneficial for caching purposes, because packages we use that may depend on the same package depend on the same version, so we don't end up with many versions of the dependency with slight differences.</p>
+<p>But of course it's not all good. First problem is, having a global version for every dependency makes it hard if we really want multiple different versions of the same package. For example it's not uncommon that one wants multiple versions of JDK installed at the same time. For this, nixpkgs have conventions that exposes several different major versions (for example JDK has many versions such as <a href="https://search.nixos.org/packages?channel=unstable&amp;show=jdk8&amp;from=0&amp;size=50&amp;sort=relevance&amp;type=packages&amp;query=jdk">jdk8</a> and <a href="https://search.nixos.org/packages?channel=unstable&amp;show=jdk17&amp;from=0&amp;size=50&amp;sort=relevance&amp;type=packages&amp;query=jdk">jdk17</a>) which solves this issue for many cases but it's still sometimes annoying. Second problem is exact version of the nixpkgs that is used is not specified in the <a href="">derivation</a>. If someone tries to build your Nix Derivation couple years later it may not build because the channel is updated with breaking changes.</p>
+<p>We can't really fix the first problem with the traditional Nix. I believe that it's an inherent trade-off between space usage and preciseness. But fortunately we can solve the second problem using <a href="">npins</a> to pin nixpkgs we want to use. Therefore ensuring reproducibility and improving the UX.</p>
+<h2 id="npins">Npins</h2>
+<p>Npins is a tool that allows "pinning" to a snapshot of the nixpkgs. The version is stored in a text file, therefore you can easily add it to version control. It also lets you conveniently update the version when you want, no manual text editing is required. It's available in nixpkgs with the name <a href="https://search.nixos.org/packages?channel=24.05&amp;show=npins&amp;from=0&amp;size=50&amp;sort=relevance&amp;type=packages&amp;query=npins">npins</a>.</p>
+<p>Once you have it installed, you need to initialize it in the directory you want to use:</p>
+<pre><code class="language-bash">npins init --bare
+</code></pre>
+<p>This will create <code>npins</code> subdirectory on the current directory. Initially there are no pinned nixpkgs and it needs to be added with another command.</p>
+<p>Adding nixpkgs can be done with:</p>
+<pre><code class="language-bash">npins add github nixos $NIXPKGS_NAME --branch $NIXPKGS_BRANCH
+</code></pre>
+<p>Where <code>$NIXPKGS_BRANCH</code> can be a <a href="https://wiki.nixos.org/wiki/Channel_branches">Nix Channel</a> name. <code>$NIXPKGS_NAME</code> is the name of nixpkgs. This is necessary because npins lets you pin multiple nixpkgs in the same repository, so you need to give them names.</p>
+<p>After having nixpkgs pinned, it can be used in nix derivations as:</p>
+<pre><code class="language-nix">{
+  system ? builtins.currentSystem,
+  sources ? import ./npins,
+}:
+let
+  pkgs = import sources.nixpkgs { inherit system; };
+in
+...
+</code></pre>
+<p><code>sources</code> contains the pinned nixpkgs, the name you gave above becomes an attribute in <code>sources</code> to access. So if you have the name <code>foo</code>, you would get nixpks by <code>import sources.foo {}</code>.</p>
+<h2 id="packaging-shell">Packaging &amp; Shell</h2>
+<p>One good use case for npins is pinning the nixpkgs for <a href="">Nix Shell</a>. So a new user can just pull the project and enter into the appropriate environment without worrying about having the correct version of nixpkgs.</p>
+<p>I use the following pattern:</p>
+<ul>
+<li><code>nix/shell.nix</code> : Contains the actual shell configuration which should be built with <a href="">callPackage</a>. Example:
+</li>
+</ul>
+<pre><code class="language-nix">{
+  mkShell,
+  # Other dependencies...
+}:
+
+mkShell {
+  # Shell configuration...
+}
+</code></pre>
+<ul>
+<li><code>shell.nix</code> : Calls <code>nix/shell.nix</code> with the pinned nixpkgs. For example if we have pinned nixpkgs with name <code>nixpkgs</code>:
+</li>
+</ul>
+<pre><code class="language-nix">{
+  system ? builtins.currentSystem,
+  sources ? import ./npins,
+}:
+let
+  pkgs = import sources.nixpkgs { inherit system; };
+in
+pkgs.callPackage ./nix/shell.nix {}
+</code></pre>
+<h3 id="bonus-direnv">Bonus: direnv</h3>
+<p>For convenience I use <a href="">direnv</a> to enter <code>nix-shell</code>. It's convenient because it automatically enters into the environment and it's for some reason faster than calling <code>nix-shell</code> directly.</p>
+<p>With <code>direnv</code> installed, I have the following <code>.envrc</code> file:</p>
+<pre><code class="language-direnv">use nix
+</code></pre>
+<p>Which is all I need.</p>
+<h2 id="nixos-configuration">NixOS configuration</h2>
+<p>NixOS system configuration depends on <code>NIX_PATH</code> environment variable to point to <code>nixpkgs</code>, which is then used to interpret <code>configuration.nix</code> file. It kind of creates a loop if you want to declare <code>NIX_PATH</code> inside <code>configuration.nix</code> because in order to interpret <code>configuration.nix</code> you first need to determine the location of <code>nixpkgs</code> which is only available after <code>NIX_PATH</code> is set. So this way of managing requires to run <code>nixos-rebuild</code> twice to actually take effect. I think this is not a good UX. Fortunately, we can use write a script that passes the appropriate <code>NIX_PATH</code> to <code>nixos-rebuild</code>. In order to prevent incorrect usage, <code>NIX_PATH</code> shouldn't be set by default.</p>
+<p>I use the following <a href="">Nu</a> script for this:</p>
+<pre><code class="language-nu">def build-nixos-configuration [
+  device_path: string, # Path for the system configuration. Must contain a 'configuration.nix' and an 'npins' directory.
+  command: string = "switch", # Main command for 'nixos-rebuild'. 'switch' or 'dry-run'
+  ...extra_args: string, # Passed to 'nixos-rebuild'
+]: nothing -&gt; nothing {
+  let abs_device_path = ($device_path | path expand --strict);
+
+  let npins_path = ($abs_device_path | path join npins default.nix);
+  let nixpkgs_pin = run-external "nix" "eval" "--raw" "-f" $npins_path "nixpkgs";
+
+  let configuration_path = ($abs_device_path | path join configuration.nix);
+
+  let nix_path = $"nixpkgs=($nixpkgs_pin):nixos-config=($configuration_path)";
+  with-env {
+    NIX_PATH: $nix_path,
+  } {
+    # For some reason '--preserve-env=NIX_PATH' doesn't pass the env variable.
+    sudo "--preserve-env" "-u" $"(whoami)" "nixos-rebuild" $command "--fast" ...$extra_args
+  }
+}
+</code></pre>
+<p>It may seem complicated, but the essential part is very simple:</p>
+<pre><code class="language-nu">let nixpkgs_pin = run-external "nix" "eval" "--raw" "-f" $npins_path "nixpkgs";
+let nix_path = $"nixpkgs=($nixpkgs_pin):nixos-config=($configuration_path)";
+with-env {
+	NIX_PATH: $nix_path,
+} {
+	sudo "--preserve-env" "-u" $"(whoami)" "nixos-rebuild" $command "--fast" ...$extra_args
+}
+</code></pre>
+<ol>
+<li>First line evaluates the nixpkgs and returns a <a href="">Nix Store</a> path.
+</li>
+<li>Second line creates the appropriate <code>NIX_PATH</code> env variables. <code>nixpkgs</code> is a path to nixpkgs and <code>nixos-config</code> is the path to <code>configuration.nix</code>.
+</li>
+<li>Sixth line calls <code>nixos-rebuild</code> with appropriate arguments.
+</li>
+</ol>
+<p>The same part can be written is bash as (disclaimer: I didn''t test this):</p>
+<pre><code class="language-bash">NIXPKGS_PIN=$(nix eval --raw -f $NPINS_PATH nixpkgs)
+NIX_PATH="nixpkgs=$NIXPKGS_PIN:nixos-config=$CONFIGURATION_PATH"
+sudo --preserve-env -u "$(whoami)" nixos-rebuild $command --fast $@
+</code></pre>
+<p>With a script like this, one can pin nixpkgs for their system configuration.</p>
+<h2 id="home-manager">Home Manager</h2>
+<p>If you use <a href="">Home Manager</a> the approach is very close to the system configuration. It's essentially the same, except in <code>NIX_PATH</code> you don't need to set <code>nixos-config</code>.</p>
+<pre><code class="language-bash">NIXPKGS_PIN=$(nix eval --raw -f $NPINS_PATH nixpkgs)
+NIX_PATH="nixpkgs=$NIXPKGS_PIN"
+home-manager $command -f $HOME_MANAGER_PATH
+</code></pre>
+<h2 id="conlusion">Conlusion</h2>
+<p>If have come this far, thank you. Nix has very good experience overall, but also has some incredibly problematic parts in terms of UX. With pinning nixpkgs using <code>npins</code> you can improve this one specific issue.</p>
+<p>Credits: This post is heavily inspired by https://jade.fyi/blog/pinning-nixos-with-npins/</p>
+<div class="footnotes"><hr><ol><li id="fn:1"><p>https://zero-to-nix.com/concepts/channels<a href="#fnref:1">↩</a></p>
+</li>
+</ol>
+</div>
+</main>
+    
+
+</body></html>

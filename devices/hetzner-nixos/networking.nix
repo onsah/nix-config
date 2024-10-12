@@ -1,9 +1,6 @@
 { config, pkgs, ... }:
 
-let blog = import ./blog.nix { 
-  fetchFromGitHub = pkgs.fetchFromGitHub; 
-  callPackage = pkgs.callPackage;
-}; in
+let blog = import ./blog.nix { }; in
 {
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
     forceSSL = true;
