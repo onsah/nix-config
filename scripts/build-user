@@ -11,9 +11,9 @@ def main [
   let abs_user_path = ($user_path | path expand --strict);
 
   let npins_path = ($abs_user_path | path join npins default.nix);
-  let nixpkgs_pin = run-external "nix" "eval" "--raw" "-f" $npins_path "nixpkgs";
-  let nixpkgs_unstable_pin = run-external "nix" "eval" "--raw" "-f" $npins_path "nixpkgs-unstable";
-  let home_manager_pin = run-external "nix" "eval" "--raw" "-f" $npins_path "home-manager";
+  let nixpkgs_pin = run-external "nix" "--extra-experimental-features" "nix-command" "eval" "--raw" "-f" $npins_path "nixpkgs";
+  let nixpkgs_unstable_pin = run-external "nix" "--extra-experimental-features" "nix-command" "eval" "--raw" "-f" $npins_path "nixpkgs-unstable";
+  let home_manager_pin = run-external "nix" "--extra-experimental-features" "nix-command" "eval" "--raw" "-f" $npins_path "home-manager";
 
   let home_manager_path = ($abs_user_path | path join home.nix);
 
