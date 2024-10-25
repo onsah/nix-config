@@ -1,1 +1,10 @@
-{ ... }: { imports = [ ./starship.nix ./direnv.nix ./bash.nix ./nnn ]; }
+{ ... }:
+{
+  imports = [
+    ./starship.nix
+    ./direnv.nix
+    ./bash.nix
+    ./nnn
+    ./vscode.nix
+  ];
+}
