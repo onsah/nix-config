@@ -1,0 +1,26 @@
+{
+  "pins": {
+    "nixos-wsl": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "nixos-wsl"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "version": "2405.5.4",
+      "revision": "05098ab6e48684c573d7033bd583b1eea2f5f851",
+      "url": "https://api.github.com/repos/nix-community/nixos-wsl/tarball/2405.5.4",
+      "hash": "1hj3lbrykzqp88wvxv86b8lm41dyqhid71vhms1g89svx54nrcj6"
+    },
+    "nixpkgs": {
+      "type": "Channel",
+      "name": "nixos-24.05",
+      "url": "https://releases.nixos.org/nixos/24.05/nixos-24.05.4469.6e99f2a27d60/nixexprs.tar.xz",
+      "hash": "103wiavbv2m4lkfz517javswjp6xyhhy60v1x083qb0dzw05xzap"
+    }
+  },
+  "version": 3
+}
