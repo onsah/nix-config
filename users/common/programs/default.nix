@@ -5,6 +5,5 @@
     ./direnv.nix
     ./bash.nix
     ./nnn
-    ./vscode.nix
   ];
 }

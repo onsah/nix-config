@@ -3,6 +3,7 @@
 {
   imports = [
     ../../common/programs
+    ../../common/vscode.nix
     ./blackbox.nix
     ./chromium.nix
     ./obsidian.nix
