@@ -1,5 +1,8 @@
 { ... }:
 
 {
-  imports = [ ./pipe-audio-in-to-out.nix ];
+  imports = [
+    ./pipe-audio-in-to-out.nix
+    ./reaper.nix
+  ];
 }

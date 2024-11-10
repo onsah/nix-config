@@ -24,12 +24,14 @@
     discord
   ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg:
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
     builtins.elem (lib.getName pkg) [
       "vscode"
       "spotify"
       "obsidian"
       "discord"
       "zoom"
+      "reaper"
     ];
 }
