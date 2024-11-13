@@ -26,18 +26,23 @@
     keybindings = [
       {
         key = "ctrl+[";
-        command = "workbench.action.navigateBackInNavigationLocations";
+        command = "workbench.action.navigateBack";
       }
       {
         key = "ctrl+]";
-        command = "workbench.action.navigateForwardInNavigationLocations";
+        command = "workbench.action.navigateForward";
       }
     ];
   };
 
   # Font settings for VS Code
   home.packages = [
-    (pkgs.nerdfonts.override { fonts = [ "CascadiaCode" "DejaVuSansMono" ]; })
+    (pkgs.nerdfonts.override {
+      fonts = [
+        "CascadiaCode"
+        "DejaVuSansMono"
+      ];
+    })
   ];
 
   fonts.fontconfig.enable = true;
