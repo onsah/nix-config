@@ -8,20 +8,6 @@ in
     lib.lists.foldl (lib.attrsets.recursiveUpdate) { startServices = true; } [
       (nextcloud-sync-service {
         inherit pkgs;
-        name = "cyber-physical-notes";
-        description = "Cyber Physical Notes";
-        nextcloudPath = "/Freiburg/Courses/Fall Semester/Cyber-Physical Systems: Discrete Models";
-        localPath = "/home/aiono/Documents/Master/Courses/Cyber-Physical Systems/Notes";
-      })
-      (nextcloud-sync-service {
-        inherit pkgs;
-        name = "verification-of-digital-circuits-notes";
-        description = "Verification of Digital Circuits Notes";
-        nextcloudPath = "/Freiburg/Courses/Fall Semester/Verification of Digital Circuits/Notes";
-        localPath = "/home/aiono/Documents/Master/Courses/Verification of Digital Circuits/Notes";
-      })
-      (nextcloud-sync-service {
-        inherit pkgs;
         name = "programming-notes";
         description = "Programming Notes";
         nextcloudPath = "/Programming/Notes";
@@ -43,10 +29,10 @@ in
       })
       (nextcloud-sync-service {
         inherit pkgs;
-        name = "software-engineering-notes";
-        description = "Software Engineering Course Notes";
-        nextcloudPath = "/Freiburg/Courses/Spring Semester/Software Engineering";
-        localPath = "/home/aiono/Documents/Master/Courses/software-engineering/Notes";
+        name = "cps-grading";
+        description = "CPS Grading Stuff";
+        nextcloudPath = "/CPS Tutoring";
+        localPath = "/home/aiono/Documents/Master/CPS-Tutoring/CPS-Grading";
       })
     ]
   );
