@@ -20,6 +20,13 @@ in
         nextcloudPath = "/CPS Tutoring";
         localPath = "/mnt/c/Users/Tutor/Documents/CPS-Grading";
       })
+      (nextcloud-sync-service {
+        inherit pkgs;
+        name = "german-notes";
+        description = "German Notes";
+        nextcloudPath = "/German";
+        localPath = "/mnt/c/Users/Tutor/Documents/German";
+      })
     ]
   );
 }
