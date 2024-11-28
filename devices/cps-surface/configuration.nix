@@ -11,6 +11,7 @@
   imports = [
     # include NixOS-WSL modules
     <nixos-wsl/modules>
+    ../common/nix-store.nix
   ];
 
   wsl.enable = true;
@@ -25,4 +26,9 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
+
+  programs.nix-ld = {
+    enable = true;
+    package = pkgs.nix-ld-rs;    
+  };
 }
