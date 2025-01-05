@@ -59,6 +59,12 @@ build-device devices/tuxedo-infinitybook-gen8/
 ```
 
 ### Setting user configuration
+
+You need to have `home-manager` available in the environment for the first setup. You can have it using the following command:
+```bash
+NIX_PATH=home-manager=https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz:nixpkgs=channel:nixos-24.05 nix-shell '<home-manager>' -A install
+```
+
 Example:
 ```bash
 build-user users/aiono-tuxedo
