@@ -34,6 +34,13 @@ in
         nextcloudPath = "/CPS Tutoring";
         localPath = "/home/aiono/Documents/Master/CPS-Tutoring/CPS-Grading";
       })
+      (nextcloud-sync-service {
+        inherit pkgs;
+        name = "diary";
+        description = "My daily notes";
+        nextcloudPath = "/Günlük";
+        localPath = "/home/aiono/Documents/Günlük";
+      })
     ]
   );
 }
