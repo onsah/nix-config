@@ -21,7 +21,6 @@ def main [
   let configuration_path = ($abs_device_path | path join configuration.nix);
   let sources_nix_path = ($source_nix_path_pairs | each { |pair| $"($pair.0)=($pair.1)" } | str join ':');
   let nix_path = $"nixos-config=($configuration_path):" + $sources_nix_path;
-  print $"final nix path: '($nix_path)'";
 
   with-env {
     NIX_PATH: $nix_path,
