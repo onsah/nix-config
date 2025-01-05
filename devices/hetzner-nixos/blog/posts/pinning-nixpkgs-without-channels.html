@@ -3,6 +3,8 @@
         <title id="post-title"></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8">
+        <script src="/highlight.js"></script>
+        <script>hljs.highlightAll();</script>
     </head>
     <body>
         <header>
@@ -20,7 +22,7 @@
             <hgroup>
                 <h1>Pinning Nixpkgs without Channels</h1>
                 <h4>
-                    Posted on 26 Sep 2024
+                    Posted on 20 Oct 2024
                 </h4>
             </hgroup>
             <p><a href="https://zero-to-nix.com/concepts/channels">Nix Channels</a> is probably one of the most controversial parts of the <a href="https://wiki.nixos.org/wiki/Nix_package_manager">Nix</a>. While Nix claims to be fully reproducible, Nix <a href="https://wiki.nixos.org/wiki/Derivations">derivations</a> implicitly refer to a <a href="https://wiki.nixos.org/wiki/Nixpkgs">nixpkgs</a> usually through a channel. This breaks the reproducibility promise because the version of nixpkgs depends on the environment that the derivation is built.</p>
@@ -146,7 +148,7 @@ with-env {
 <li>Second line creates the appropriate <code>NIX_PATH</code> env variables. <code>nixpkgs</code> is a path to nixpkgs and <code>nixos-config</code> is the path to <code>configuration.nix</code>.</li>
 <li>Sixth line calls <code>nixos-rebuild</code> with appropriate arguments.</li>
 </ol>
-<p>The same part can be written is bash as (disclaimer: I didn't test it):</p>
+<p>The same part can be written in bash as (disclaimer: I didn't test it):</p>
 <pre><code class="language-bash">NIXPKGS_PIN=$(nix eval --raw -f $NPINS_PATH nixpkgs)
 NIX_PATH="nixpkgs=$NIXPKGS_PIN:nixos-config=$CONFIGURATION_PATH"
 sudo --preserve-env -u "$(whoami)" nixos-rebuild $command --fast $@
