@@ -11,7 +11,7 @@
     ./nextcloud.nix
     ./networking.nix
     ./git.nix
-    ./readeck.nix
+    ./readeck
   ];
 
   # Use the GRUB 2 boot loader.
