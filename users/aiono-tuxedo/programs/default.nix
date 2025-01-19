@@ -22,6 +22,7 @@
     ./clapper.nix
     ./zettlr.nix
     ./foliate.nix
+    ./tree.nix
     ./npins.nix
     ./zed
   ];
