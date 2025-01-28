@@ -1,5 +1,7 @@
 /**
   Based on https://readeck.org/en/docs/deploy and https://mtlynch.io/notes/simple-go-web-service-nixos/.
+
+  Config file can be found in `/home/readeck/config.toml`. Because it's read/write, I can't manage it with Nix.
 */
 
 { pkgs, ... }:
