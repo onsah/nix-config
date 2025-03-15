@@ -25,8 +25,7 @@ def main [
   with-env {
     NIX_PATH: $nix_path,
   } {
-    # For some reason '--preserve-env=NIX_PATH' doesn't pass the env variable.
-    sudo "--preserve-env" "-u" $"(whoami)" "nixos-rebuild" $command "--fast" ...$extra_args
+    run-external "nixos-rebuild" "--use-remote-sudo" $command "--fast" ...$extra_args
   }
 }
 
