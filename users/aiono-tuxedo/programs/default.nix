@@ -9,8 +9,6 @@
     ./obsidian.nix
     ./git.nix
     ./newsflash.nix
-    ./shortwave.nix
-    ./dialect.nix
     ./apostrophe.nix
     ./tuba.nix
     ./denaro.nix
@@ -20,7 +18,6 @@
     ./nixd.nix
     ./translate.nix
     ./clapper.nix
-    ./zettlr.nix
     ./foliate.nix
     ./tree.nix
     ./npins.nix
