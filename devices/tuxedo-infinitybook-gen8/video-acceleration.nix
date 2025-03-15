@@ -5,7 +5,7 @@
 { pkgs, ... }:
 
 {
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     extraPackages = [
       # https://wiki.archlinux.org/title/Hardware_video_acceleration#Configuring_VA-API
