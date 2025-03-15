@@ -1,2 +1,0 @@
-# TODO: Find a way to send the path of `blueutil` instead of hardcoding
-/opt/homebrew/bin/blueutil -p 0
