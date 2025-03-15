@@ -77,3 +77,11 @@ You don't need to do it manually as it runs automatically pre commit after [setu
 
 ### Cleaning up the Nix Store
 Unfortunately Nix Store accumulates garbage as it's being used, so occasionally one needs to cleanup the store. For now there is a script for it: `cleanup-nix-store`.
+
+### Upgrading NixOS version
+
+Update npins channel
+
+```shell
+npins -d devices/$DEVICE_NAME add --name nixpkgs channel $CHANNEL_NAME
+```
