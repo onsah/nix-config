@@ -11,7 +11,6 @@
     ./scripts
     ./systemd
     ./music
-    ./packages.nix
     ./fonts.nix
     ./nix.nix
     ../common/linux.nix
