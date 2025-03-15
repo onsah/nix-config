@@ -11,17 +11,27 @@ def main [
   let abs_user_path = ($user_path | path expand --strict);
 
   let npins_path = ($abs_user_path | path join npins default.nix);
+  let sources_path = ($abs_user_path | path join npins sources.json);
+
+  let source_names = open $sources_path | get pins | columns;
+  let source_nix_path_pairs = ($source_names | each { |source| [ $source, (source_nix_path $npins_path $source)] });
+
   let nixpkgs_pin = run-external "nix" "--extra-experimental-features" "nix-command" "eval" "--raw" "-f" $npins_path "nixpkgs";
   let nixpkgs_unstable_pin = run-external "nix" "--extra-experimental-features" "nix-command" "eval" "--raw" "-f" $npins_path "nixpkgs-unstable";
   let home_manager_pin = run-external "nix" "--extra-experimental-features" "nix-command" "eval" "--raw" "-f" $npins_path "home-manager";
 
   let home_manager_path = ($abs_user_path | path join home.nix);
+  let sources_nix_path = ($source_nix_path_pairs | each { |pair| $"($pair.0)=($pair.1)" } | str join ':');
 
   with-env {
-    NIX_PATH: $"nixpkgs=($nixpkgs_pin):home-manager=($home_manager_pin):nixpkgs-unstable=($nixpkgs_unstable_pin)",
+    NIX_PATH: $"($sources_nix_path)",
   } {
     home-manager $command -f $home_manager_path;
   }
+}
+
+def source_nix_path [npins_path: string, source: string] -> string {
+  run-external "nix" "--extra-experimental-features" "nix-command" "eval" "--raw" "-f" $npins_path $source
 }
 
 def assert_file [path: string] {
