@@ -10,9 +10,7 @@
       };
       # Allows git to store credentials when entered
       # and not ask for the next time
-      credential.helper = "${
-          pkgs.git.override { withLibsecret = true; }
-        }/bin/git-credential-libsecret";
+      credential.helper = "${pkgs.gitFull}/bin/git-credential-libsecret";
     };
   };
 }
