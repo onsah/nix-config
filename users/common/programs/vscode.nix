@@ -19,6 +19,9 @@
         otherSettings = {
           "window.menuBarVisibility" = "toggle";
           "git.confirmSync" = false;
+          "files.exclude" = {
+            "**/.git" = false;
+          };
           "editor.fontFamily" = "'DejaVuSansM Nerd Font'";
         };
       in
