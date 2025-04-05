@@ -28,11 +28,11 @@
       terminalSettings // otherSettings;
     keybindings = [
       {
-        key = "ctrl+[";
+        key = "ctrl+[BracketLeft]";
         command = "workbench.action.navigateBack";
       }
       {
-        key = "ctrl+]";
+        key = "ctrl+[BracketRight]";
         command = "workbench.action.navigateForward";
       }
     ];
