@@ -13,6 +13,8 @@
     ./power-management.nix
     ./eduroam.nix
     ./tuxedo-control
+    ./actual.nix
+    ./podman.nix
   ];
 
   # Bootloader.
@@ -181,5 +183,16 @@
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu.ovmf = {
     enable = true;
+  };
+
+  networking.firewall = rec {
+    # Enable firewall for GSConnect
+    allowedTCPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
+    allowedUDPPortRanges = allowedTCPPortRanges;
   };
 }
