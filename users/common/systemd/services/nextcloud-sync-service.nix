@@ -1,6 +1,14 @@
-{ name, description, nextcloudPath, localPath, pkgs }:
-let credentials = import ./secrets.nix;
-in {
+{
+  name,
+  description,
+  nextcloudPath,
+  localPath,
+  pkgs,
+}:
+let
+  credentials = import ./secrets.nix;
+in
+{
   services = {
     "nextcloud-autosync-${name}" = {
       Unit = {
@@ -9,8 +17,7 @@ in {
       };
       Service = {
         Type = "simple";
-        ExecStart =
-          "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --user ${credentials.nextcloud.username} --password ${credentials.nextcloud.password} --path '${nextcloudPath}' '${localPath}' https://nextcloud.aiono.dev";
+        ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --user ${credentials.nextcloud.username} --password ${credentials.nextcloud.password} --path '${nextcloudPath}' '${localPath}' https://nextcloud.aiono.dev";
         TimeoutStopSec = "180";
         KillMode = "process";
         KillSignal = "SIGINT";
@@ -20,10 +27,12 @@ in {
   };
   timers = {
     "nextcloud-autosync-${name}" = {
-      Unit.Description =
-        "Automatic sync files with Nextcloud when booted up after 5 minutes then rerun every 10 seconds";
+      Unit.Description = "Automatic sync files with Nextcloud when booted up after 5 minutes then rerun every 10 seconds";
       Timer.OnCalendar = "*-*-* *:*:00,15,30,45";
-      Install.WantedBy = [ "multi-user.target" "timers.target" ];
+      Install.WantedBy = [
+        "multi-user.target"
+        "timers.target"
+      ];
     };
   };
 }

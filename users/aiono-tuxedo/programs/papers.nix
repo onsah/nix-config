@@ -1,4 +1,8 @@
 { ... }:
 
-let unstablePkgs = import <nixpkgs-unstable> { };
-in { home.packages = [ unstablePkgs.papers ]; }
+let
+  unstablePkgs = import <nixpkgs-unstable> { };
+in
+{
+  home.packages = [ unstablePkgs.papers ];
+}

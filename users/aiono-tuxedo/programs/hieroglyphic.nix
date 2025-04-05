@@ -1,4 +1,8 @@
 { ... }:
 
-let unstablePkgs = import <nixpkgs-unstable> { };
-in { home.packages = [ unstablePkgs.hieroglyphic ]; }
+let
+  unstablePkgs = import <nixpkgs-unstable> { };
+in
+{
+  home.packages = [ unstablePkgs.hieroglyphic ];
+}
