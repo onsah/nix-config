@@ -1,4 +1,4 @@
 #!/usr/bin/env nu
 def main [] {
-    run-external nixfmt $"($env.PROJECT_ROOT)/users/**/*.nix" shell.nix
+    run-external nixfmt users/**/*.nix shell.nix
 }
