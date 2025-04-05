@@ -29,13 +29,6 @@ in
       })
       (nextcloud-sync-service {
         inherit pkgs;
-        name = "cps-grading";
-        description = "CPS Grading Stuff";
-        nextcloudPath = "/CPS Tutoring";
-        localPath = "/home/aiono/Documents/Master/CPS-Tutoring/CPS-Grading";
-      })
-      (nextcloud-sync-service {
-        inherit pkgs;
         name = "diary";
         description = "My daily notes";
         nextcloudPath = "/Günlük";
