@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -21,7 +21,6 @@
     ./foliate.nix
     ./tree.nix
     ./npins.nix
-    ./zed
   ];
 
   nixpkgs.config.allowUnfreePredicate =
@@ -31,4 +30,14 @@
       "obsidian"
       "reaper"
     ];
+
+  home.packages = with pkgs; [ gnomeExtensions.gsconnect ];
+
+  dconf = {
+    enable = true;
+    settings."org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = with pkgs.gnomeExtensions; [ gsconnect.extensionUuid ];
+    };
+  };
 }
