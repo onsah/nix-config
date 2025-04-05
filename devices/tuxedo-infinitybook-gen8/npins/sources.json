@@ -5,6 +5,12 @@
       "name": "nixos-24.11",
       "url": "https://releases.nixos.org/nixos/24.11/nixos-24.11.715614.cdd2ef009676/nixexprs.tar.xz",
       "hash": "1ila630hqmk7gqiib1vhyr4rdx9ncq7ymjl7wcxcnmcsmswha2hm"
+    },
+    "nixpkgs-unstable": {
+      "type": "Channel",
+      "name": "nixpkgs-unstable",
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre773017.f3a2a0601e96/nixexprs.tar.xz",
+      "hash": "124kz4qmlrl87vfpmfg7gd75fk2y2rn2l2mzhww4xralakkxxcwi"
     }
   },
   "version": 3
