@@ -21,6 +21,7 @@
     ./foliate.nix
     ./tree.nix
     ./npins.nix
+    ./wl-clipboard.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate =
