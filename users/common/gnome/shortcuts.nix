@@ -23,6 +23,7 @@
         switch-windows-backward = lib.gvariant.mkArray [ "<Shift><Alt>Tab" ];
         switch-applications = lib.gvariant.mkEmptyArray lib.gvariant.type.string;
         switch-applications-backward = lib.gvariant.mkEmptyArray lib.gvariant.type.string;
+        unmaximize = lib.gvariant.mkArray [ "<Super>Down" ];
       };
       "org/gnome/shell/keybindings" = {
         toggle-overview = lib.gvariant.mkArray [ "<Control><Super>Down" ];
