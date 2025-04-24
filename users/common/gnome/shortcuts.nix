@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
 
 {
   dconf.settings =
@@ -10,11 +10,6 @@
             "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
           ];
           www = [ "<Super>f" ];
-        };
-        "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-          binding = "<Super>t";
-          command = "blackbox";
-          name = "Open Terminal";
         };
       };
     in

@@ -22,6 +22,8 @@
     ./tree.nix
     ./npins.nix
     ./wl-clipboard.nix
+    ./anki.nix
+    ./ghostty.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate =
