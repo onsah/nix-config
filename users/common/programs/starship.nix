@@ -13,6 +13,10 @@
         show_always = true;
         format = "[$user]($style) ";
       };
+      scala = {
+        # By default .metals folders trigger symbol. But .metals is generated automatically at home directory.
+        detect_folders = [ ];
+      };
     };
   };
 }
