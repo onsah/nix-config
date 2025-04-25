@@ -8,6 +8,8 @@
       theme = light:Adwaita,dark:Adwaita Dark
       font-family = DejaVu Sans Mono
       font-size = 11
+      window-width = 100
+      window-height = 26
     '';
   };
 
