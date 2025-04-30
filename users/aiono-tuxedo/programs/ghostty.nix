@@ -10,6 +10,7 @@
       font-size = 11
       window-width = 100
       window-height = 26
+      keybind = f11=toggle_fullscreen
     '';
   };
 
