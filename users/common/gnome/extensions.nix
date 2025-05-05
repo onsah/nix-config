@@ -1,12 +1,19 @@
 { pkgs, ... }:
 
 {
-  home.packages = [ pkgs.gnomeExtensions.tiling-shell ];
+  home.packages = with pkgs.gnomeExtensions; [
+    tiling-shell
+    gsconnect
+  ];
 
   dconf.settings = {
+    enable = true;
     "org/gnome/shell" = {
       disable-user-extensions = false;
-      enabled-extensions = [ "tilingshell@ferrarodomenico.com" ];
+      enabled-extensions = with pkgs.gnomeExtensions; [
+        tiling-shell.extensionUuid
+        gsconnect.extensionUuid
+      ];
     };
   };
 }
