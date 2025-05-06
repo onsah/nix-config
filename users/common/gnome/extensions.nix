@@ -6,14 +6,19 @@
     gsconnect
   ];
 
-  dconf.settings = {
+  dconf = {
     enable = true;
-    "org/gnome/shell" = {
-      disable-user-extensions = false;
-      enabled-extensions = with pkgs.gnomeExtensions; [
-        tiling-shell.extensionUuid
-        gsconnect.extensionUuid
-      ];
+    settings = {
+      "org/gnome/shell" = {
+        disable-user-extensions = false;
+        enabled-extensions = with pkgs.gnomeExtensions; [
+          tiling-shell.extensionUuid
+          gsconnect.extensionUuid
+        ];
+      };
+      "org/gnome/shell/extensions/tilingshell" = {
+        enable-autotiling = true;
+      };
     };
   };
 }
