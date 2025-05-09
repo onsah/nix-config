@@ -11,6 +11,7 @@
       window-width = 100
       window-height = 26
       keybind = f11=toggle_fullscreen
+      command = ${pkgs.nushell}/bin/nu
     '';
   };
 

@@ -24,6 +24,7 @@
     ./wl-clipboard.nix
     ./anki.nix
     ./ghostty.nix
+    ./nushell
   ];
 
   nixpkgs.config.allowUnfreePredicate =
