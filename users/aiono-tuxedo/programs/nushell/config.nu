@@ -3,7 +3,7 @@
 # cd on quit for nnn
 export def --env ncd [
 	...args : string # Extra flags to launch nnn with.
-	--selective = false # Change directory only when exiting via ^G.
+	--selective = true # Change directory only when exiting via ^G.
 ]: nothing -> nothing {
 
 	# The behaviour is set to cd on quit (nnn checks if $env.NNN_TMPFILE is set).
