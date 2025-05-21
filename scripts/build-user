@@ -16,10 +16,6 @@ def main [
   let source_names = open $sources_path | get pins | columns;
   let source_nix_path_pairs = ($source_names | each { |source| [ $source, (source_nix_path $npins_path $source)] });
 
-  let nixpkgs_pin = run-external "nix" "--extra-experimental-features" "nix-command" "eval" "--raw" "-f" $npins_path "nixpkgs";
-  let nixpkgs_unstable_pin = run-external "nix" "--extra-experimental-features" "nix-command" "eval" "--raw" "-f" $npins_path "nixpkgs-unstable";
-  let home_manager_pin = run-external "nix" "--extra-experimental-features" "nix-command" "eval" "--raw" "-f" $npins_path "home-manager";
-
   let home_manager_path = ($abs_user_path | path join home.nix);
   let sources_nix_path = ($source_nix_path_pairs | each { |pair| $"($pair.0)=($pair.1)" } | str join ':');
 
