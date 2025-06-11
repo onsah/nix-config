@@ -23,6 +23,7 @@
             "**/.git" = false;
           };
           "editor.fontFamily" = "'DejaVuSansM Nerd Font'";
+          "editor.wordWrap" = "on";
         };
       in
       terminalSettings // otherSettings;
@@ -38,8 +39,8 @@
     ];
   };
 
-  # Font settings for VS Code
   home.packages = [
+    # Font settings for VS Code
     (pkgs.nerdfonts.override {
       fonts = [
         "CascadiaCode"
