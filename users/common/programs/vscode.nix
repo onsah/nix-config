@@ -24,6 +24,15 @@
           };
           "editor.fontFamily" = "'DejaVuSansM Nerd Font'";
           "editor.wordWrap" = "on";
+          "nix.enableLanguageServer" = true;
+          "nix.serverPath" = "${pkgs.nil}/bin/nil";
+          "nix.serverSettings" = {
+            "nil" = {
+              "formatting" = {
+                command = [ "${pkgs.nixfmt}/bin/nixfmt" ];
+              };
+            };
+          };
         };
       in
       terminalSettings // otherSettings;
