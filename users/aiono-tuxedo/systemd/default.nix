@@ -39,7 +39,7 @@ in
         name = "debt";
         description = "My notes for the Anthropology of Debt course";
         nextcloudPath = "/Documents/Debt";
-        localPath = "/home/aiono/Documents/Master/Courses/Debt";
+        localPath = "/home/aiono/Documents/Master/Courses/debt/Debt";
       })
     ]
   );
