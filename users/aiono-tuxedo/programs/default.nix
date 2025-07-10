@@ -25,6 +25,7 @@
     ./anki.nix
     ./ghostty.nix
     ./nushell
+    ./heroic.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate =
