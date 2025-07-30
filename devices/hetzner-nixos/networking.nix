@@ -9,7 +9,7 @@
   services.nginx.virtualHosts."blog.aiono.dev" = {
     enableACME = true;
     forceSSL = true;
-    root = /etc/blog;
+    root = "/etc/blog";
   };
 
   services.nginx.virtualHosts."reading.aiono.dev" = {
