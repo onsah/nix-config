@@ -1,18 +1,15 @@
 { config, pkgs, ... }:
 
-let
-  blog = import ./blog.nix { };
-in
 {
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
     forceSSL = true;
     enableACME = true;
   };
 
-  services.nginx.virtualHosts.${blog.hostName} = {
+  services.nginx.virtualHosts."blog.aiono.dev" = {
     enableACME = true;
     forceSSL = true;
-    root = blog.root;
+    root = /etc/blog;
   };
 
   services.nginx.virtualHosts."reading.aiono.dev" = {
