@@ -41,6 +41,13 @@ in
         nextcloudPath = "/Documents/Debt";
         localPath = "/home/aiono/Documents/Master/Courses/debt/Debt";
       })
+      (nextcloud-sync-service {
+        inherit pkgs;
+        name = "books";
+        description = "My book collection";
+        nextcloudPath = "/Books";
+        localPath = "/home/aiono/Documents/Books";
+      })
     ]
   );
 }
