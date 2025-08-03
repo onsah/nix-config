@@ -33,6 +33,8 @@
               };
             };
           };
+          "editor.inlineSuggest.edits.allowCodeShifting" = "always";
+          "github.copilot.nextEditSuggestions.enabled" = false;
         };
       in
       terminalSettings // otherSettings;
