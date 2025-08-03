@@ -2,18 +2,23 @@
 {
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud27;
+    package = pkgs.nextcloud29;
     hostName = "nextcloud.aiono.dev";
     config.adminuser = "root";
     config.adminpassFile = "/etc/nextcloud-admin-pass";
     https = true;
     extraApps = {
       inherit (config.services.nextcloud.package.packages.apps)
-        news
+        # news
         tasks
         deck
 	calendar
       ;
+      news = pkgs.fetchNextcloudApp {
+        url = "https://github.com/nextcloud/news/releases/download/25.3.1/news.tar.gz";
+        sha256 = "sha256-W+YlkyMem+l7oXp169uM35PnNI+psreG0RBo38Ox2nI=";
+        license = "agpl3Only";
+      };
     };
     extraAppsEnable = true;
     extraOptions = {
