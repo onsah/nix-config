@@ -9,7 +9,7 @@ let
   credentials = import ./secrets.nix;
   syncScript = pkgs.writeShellScript "nextcloud-sync" ''
     mkdir -p '${localPath}'
-    ${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --user ${credentials.nextcloud.username} --password ${credentials.nextcloud.password} --path "${1?"Expected the nextcloud path"}" "${2?"Expected the local path"}" https://nextcloud.aiono.dev
+    ${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --user ${credentials.nextcloud.username} --password ${credentials.nextcloud.password} --path "''${1?"Expected the nextcloud path"}" "''${2?"Expected the local path"}" https://nextcloud.aiono.dev
   '';
 in
 {
