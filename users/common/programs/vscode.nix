@@ -35,6 +35,12 @@
           };
           "editor.inlineSuggest.edits.allowCodeShifting" = "always";
           "github.copilot.nextEditSuggestions.enabled" = false;
+          "github.copilot.enable" = {
+            "*" = false;
+            "plaintext" = false;
+            "markdown" = false;
+            "scminput" = false;
+          };
         };
       in
       terminalSettings // otherSettings;
