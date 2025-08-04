@@ -1,4 +1,4 @@
-{ config, pkgs, ... } :
+{ config, pkgs, ... }:
 {
   services.nextcloud = {
     enable = true;
@@ -12,8 +12,8 @@
         # news
         tasks
         deck
-	calendar
-      ;
+        calendar
+        ;
       news = pkgs.fetchNextcloudApp {
         url = "https://github.com/nextcloud/news/releases/download/25.3.1/news.tar.gz";
         sha256 = "sha256-W+YlkyMem+l7oXp169uM35PnNI+psreG0RBo38Ox2nI=";
@@ -21,17 +21,17 @@
       };
     };
     extraAppsEnable = true;
-    extraOptions = {
+    settings = {
       # https://help.nextcloud.com/t/syncing-client-crashes-with-network-error-99/149047/22
       "bulkupload.enabled" = false;
     };
   };
-  
+
   # services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
   #   forceSSL = true;
   #   enableACME = true;
-    # sslCertificate = "/var/nginx/ssl/nc-selfsigned.crt";
-    # sslCertificateKey = "/var/nginx/ssl/nc-selfsigned.key";
+  # sslCertificate = "/var/nginx/ssl/nc-selfsigned.crt";
+  # sslCertificateKey = "/var/nginx/ssl/nc-selfsigned.key";
   # };
 
   # security.acme = {
@@ -39,4 +39,3 @@
   #   defaults.email = "sahinonur2000@hotmail.com";   
   # };
 }
-
