@@ -15,7 +15,7 @@
       "url": "https://api.github.com/repos/ryantm/agenix/tarball/0.15.0",
       "hash": "01dhrghwa7zw93cybvx4gnrskqk97b004nfxgsys0736823956la"
     },
-    "nixos": {
+    "nixpkgs": {
       "type": "Git",
       "repository": {
         "type": "GitHub",
