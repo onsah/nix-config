@@ -8,7 +8,7 @@
 
 let
   readeckStateDirectory = "readeck";
-  readeck = pkgs.callPackage ./readeck.nix { };
+  readeckApp = pkgs.callPackage ./readeck.nix { };
 in
 {
   # https://nlewo.github.io/nixos-manual-sphinx/configuration/user-mgmt.xml.html
@@ -21,12 +21,13 @@ in
   };
 
   systemd.services.readeck = {
+    enable = true;
     description = "Readeck service";
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];
     serviceConfig = {
       # readeck keeps state in the current directory
-      ExecStart = "${readeck}/bin/readeck serve";
+      ExecStart = "${readeckApp}/bin/readeck serve";
       WorkingDirectory = "/home/readeck";
       User = "readeck";
       # Restart = "on-failure";
@@ -35,7 +36,7 @@ in
       # Sandboxing
       ProtectSystem = "full";
       ReadWritePaths = "/home/readeck";
-      MemoryDenyWriteExecute = true;
+      # MemoryDenyWriteExecute = true;
       NoNewPrivileges = true;
       PrivateTmp = true;
       PrivateDevices = "yes";
