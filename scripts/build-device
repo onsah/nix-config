@@ -5,7 +5,7 @@ use std assert
 def main [
   device_path: string, # Path for the system configuration. Must contain a 'configuration.nix' and an 'npins' directory.
   command: string = "switch", # Main command for 'nixos-rebuild'. 'switch' or 'dry-run'
-  ...extra_args: string, # Passed to 'nixos-rebuild'
+  --target-host: string, # Target host for remote build
 ]: nothing -> nothing {
 
   assert_dir $device_path;
@@ -25,7 +25,11 @@ def main [
   with-env {
     NIX_PATH: $nix_path,
   } {
-    run-external "nixos-rebuild" "--use-remote-sudo" $command "--fast" ...$extra_args
+    if $target_host == null {
+      run-external "nixos-rebuild" "--use-remote-sudo" $command "--fast"
+    } else {
+      run-external "nixos-rebuild" "--target-host" $target_host "--use-remote-sudo" $command "--fast"
+    }
   }
 }
 
