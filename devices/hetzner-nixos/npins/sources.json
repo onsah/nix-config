@@ -9,10 +9,23 @@
       },
       "pre_releases": false,
       "version_upper_bound": null,
+      "release_prefix": null,
       "version": "0.15.0",
       "revision": "564595d0ad4be7277e07fa63b5a991b3c645655d",
       "url": "https://api.github.com/repos/ryantm/agenix/tarball/0.15.0",
       "hash": "01dhrghwa7zw93cybvx4gnrskqk97b004nfxgsys0736823956la"
+    },
+    "nixos": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nixos",
+        "repo": "nixpkgs"
+      },
+      "branch": "nixos-24.05",
+      "revision": "b134951a4c9f3c995fd7be05f3243f8ecd65d798",
+      "url": "https://github.com/nixos/nixpkgs/archive/b134951a4c9f3c995fd7be05f3243f8ecd65d798.tar.gz",
+      "hash": "0zydsqiaz8qi4zd63zsb2gij2p614cgkcaisnk11wjy3nmiq0x1s"
     }
   },
   "version": 3
