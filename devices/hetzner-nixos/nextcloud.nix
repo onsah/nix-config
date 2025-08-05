@@ -16,7 +16,7 @@
         ;
       news = pkgs.fetchNextcloudApp {
         url = "https://github.com/nextcloud/news/releases/download/25.3.1/news.tar.gz";
-        sha256 = "sha256-W+YlkyMem+l7oXp169uM35PnNI+psreG0RBo38Ox2nI=";
+        sha256 = "sha256-trXnDSSFyr5HKXaS1S3XrlSAUiiT+8B+kP0lg+exLcs=";
         license = "agpl3Only";
       };
     };
