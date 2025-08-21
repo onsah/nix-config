@@ -21,7 +21,7 @@ in
       };
       Service = {
         Type = "simple";
-        ExecStart = "${syncScript} ${nextcloudPath} ${localPath}";
+        ExecStart = "${syncScript} '${nextcloudPath}' '${localPath}'";
         TimeoutStopSec = "180";
         KillMode = "process";
         KillSignal = "SIGINT";
