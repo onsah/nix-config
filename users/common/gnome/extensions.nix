@@ -4,6 +4,7 @@
   home.packages = with pkgs.gnomeExtensions; [
     tiling-shell
     gsconnect
+    paperwm
   ];
 
   dconf = {
@@ -14,6 +15,7 @@
         enabled-extensions = with pkgs.gnomeExtensions; [
           tiling-shell.extensionUuid
           gsconnect.extensionUuid
+          paperwm.extensionUuid
         ];
       };
       "org/gnome/shell/extensions/tilingshell" = {
