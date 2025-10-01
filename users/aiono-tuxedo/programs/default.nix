@@ -26,6 +26,7 @@
     ./ghostty.nix
     ./nushell
     ./heroic.nix
+    ./intellij.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate =
@@ -34,5 +35,6 @@
       "vscode"
       "obsidian"
       "reaper"
+      "idea-ultimate"
     ];
 }
