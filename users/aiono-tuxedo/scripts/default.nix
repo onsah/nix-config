@@ -2,7 +2,7 @@
 
 {
   home.packages = [
-    (pkgs.writeShellScriptBin "ncd_nextcloud" (builtins.readFile ./ncd_nextcloud))
+    (pkgs.writeShellScriptBin "nextcloud_path" (builtins.readFile ./nextcloud_path))
     (pkgs.callPackage ./freiburgvpn.nix { })
     (pkgs.callPackage ./shell-with-packages { })
   ];
