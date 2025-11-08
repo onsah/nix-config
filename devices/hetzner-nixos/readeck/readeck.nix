@@ -11,11 +11,11 @@
 
 stdenv.mkDerivation {
   pname = "readeck";
-  version = "0.18.0";
+  version = "0.20.0";
 
   src = fetchurl {
-    url = "https://codeberg.org/readeck/readeck/releases/download/0.18.0/readeck-0.18.0-linux-amd64";
-    hash = "sha256-w5/kWuus31F4yB1OmFP/qKoLXUNwSuoJzjgBKs5mr5A=";
+    url = "https://codeberg.org/readeck/readeck/releases/download/0.20.0/readeck-0.20.0-linux-amd64";
+    hash = "sha256-mawDfx8jp9/hRK+CT+/vfmB1aamzqCKPb+FZW0SKZgY=";
   };
 
   phases = [ "installPhase" ];
