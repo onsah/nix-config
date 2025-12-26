@@ -194,5 +194,10 @@
       }
     ];
     allowedUDPPortRanges = allowedTCPPortRanges;
+    allowedTCPPorts = [
+      7236
+      7250
+    ];
+    allowedUDPPorts = allowedTCPPorts;
   };
 }
