@@ -12,5 +12,7 @@
     pkgs.xits-math
   ];
 
+  xdg.dataFile."fonts/Myna".source = ./fonts/Myna.otf;
+
   fonts.fontconfig.enable = true;
 }
