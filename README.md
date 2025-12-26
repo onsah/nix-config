@@ -85,3 +85,13 @@ Update npins channel
 ```shell
 npins -d devices/$DEVICE_NAME add --name nixpkgs channel $CHANNEL_NAME
 ```
+
+### Upgrading Home Manager version
+
+Update npins channels
+
+```shell
+npins -d users/aiono-tuxedo/npins add github nix-community home-manager --branch release-$VERSION
+npins -d users/aiono-tuxedo/npins add github nixos nixpkgs --branch nixos-$VERSION
+```
+

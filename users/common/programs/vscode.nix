@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 {
-  programs.vscode = {
-    enable = true;
+  programs.vscode.enable = true;
+  programs.vscode.profiles.default = {
     userSettings =
       let
         terminalSettings = {
@@ -58,12 +58,8 @@
 
   home.packages = [
     # Font settings for VS Code
-    (pkgs.nerdfonts.override {
-      fonts = [
-        "CascadiaCode"
-        "DejaVuSansMono"
-      ];
-    })
+    pkgs.nerd-fonts.caskaydia-mono
+    pkgs.nerd-fonts.dejavu-sans-mono
   ];
 
   fonts.fontconfig.enable = true;

@@ -2,12 +2,8 @@
 
 {
   home.packages = [
-    (pkgs.nerdfonts.override {
-      fonts = [
-        "CascadiaCode"
-        "DejaVuSansMono"
-      ];
-    })
+    pkgs.nerd-fonts.caskaydia-mono
+    pkgs.nerd-fonts.dejavu-sans-mono
     # I use this for my typst formulas
     pkgs.xits-math
   ];
