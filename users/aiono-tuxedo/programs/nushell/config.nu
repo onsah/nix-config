@@ -37,7 +37,7 @@ export def --env ncd [
 
 $env.config.show_banner = false
 
-def direnv [] {
+def direnv-hook [] {
     [
         {
             condition: {|before, after| ($before != $after) and ($after | path join .env.yaml | path exists) }
@@ -61,7 +61,7 @@ def direnv [] {
 export-env {
     $env.config = ( $env.config | upsert hooks.env_change.PWD { |config|
         let o = ($config | get -i hooks.env_change.PWD)
-        let val = (direnv)
+        let val = (direnv-hook)
         if $o == null {
             $val
         } else {
