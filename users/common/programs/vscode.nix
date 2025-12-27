@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let
+  font-family = "'Adwaita Mono'";
+in
 {
   programs.vscode.enable = true;
   programs.vscode.profiles.default = {
@@ -14,7 +17,7 @@
               "icon" = "terminal-bash";
             };
           };
-          "terminal.integrated.fontFamily" = "'DejaVuSansM Nerd Font'";
+          "terminal.integrated.fontFamily" = "${font-family}";
         };
         otherSettings = {
           "window.menuBarVisibility" = "toggle";
@@ -22,7 +25,7 @@
           "files.exclude" = {
             "**/.git" = false;
           };
-          "editor.fontFamily" = "'DejaVuSansM Nerd Font'";
+          "editor.fontFamily" = "${font-family}";
           "editor.wordWrap" = "on";
           "nix.enableLanguageServer" = true;
           "nix.serverPath" = "${pkgs.nil}/bin/nil";
@@ -56,10 +59,11 @@
     ];
   };
 
-  home.packages = [
+  home.packages = with pkgs.nerd-fonts; [
     # Font settings for VS Code
-    pkgs.nerd-fonts.caskaydia-mono
-    pkgs.nerd-fonts.dejavu-sans-mono
+    caskaydia-mono
+    dejavu-sans-mono
+    adwaita-mono
   ];
 
   fonts.fontconfig.enable = true;

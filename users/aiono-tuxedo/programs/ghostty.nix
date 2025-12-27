@@ -1,12 +1,15 @@
 { pkgs, ... }:
 
 {
-  home.packages = [ pkgs.ghostty ];
+  home.packages = [
+    pkgs.ghostty
+    pkgs.nerd-fonts.adwaita-mono
+  ];
 
   home.file."/home/aiono/.config/ghostty/config" = {
     text = ''
       theme = light:Adwaita,dark:Adwaita Dark
-      font-family = DejaVu Sans Mono
+      font-family = Adwaita Mono
       font-size = 11
       window-width = 100
       window-height = 26
@@ -23,4 +26,6 @@
       name = "Open Terminal";
     };
   };
+
+  fonts.fontconfig.enable = true;
 }
