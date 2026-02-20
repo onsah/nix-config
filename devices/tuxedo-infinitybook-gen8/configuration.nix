@@ -15,6 +15,7 @@
     ./tuxedo-control
     ./actual.nix
     ./podman.nix
+    ./nvidia.nix
   ];
 
   # Bootloader.
@@ -200,4 +201,6 @@
     ];
     allowedUDPPorts = allowedTCPPorts;
   };
+
+  programs.steam.enable = true;
 }
