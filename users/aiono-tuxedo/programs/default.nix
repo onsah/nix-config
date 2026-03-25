@@ -4,9 +4,9 @@
   imports = [
     ../../common/programs
     ../../common/programs/vscode.nix
+    ../../common/programs/obsidian.nix
     ./blackbox.nix
     ./chromium.nix
-    ./obsidian.nix
     ./git.nix
     ./newsflash.nix
     ./apostrophe.nix
