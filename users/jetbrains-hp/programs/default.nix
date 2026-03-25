@@ -11,4 +11,8 @@
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "vscode" "obsidian"
   ];
+
+  home.packages = with pkgs; [
+    scala-cli
+  ];
 }
