@@ -27,6 +27,7 @@
     ./nushell
     ./heroic.nix
     ./intellij.nix
+    ./opencode.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate =
