@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   font-family = "'Adwaita Mono'";
@@ -47,16 +47,7 @@ in
         };
       in
       terminalSettings // otherSettings;
-    keybindings = [
-      {
-        key = "ctrl+[BracketLeft]";
-        command = "workbench.action.navigateBack";
-      }
-      {
-        key = "ctrl+[BracketRight]";
-        command = "workbench.action.navigateForward";
-      }
-    ];
+    keybindings = config.lib.file.mkOutOfStoreSymlink ./vscodekeybindings.json;
   };
 
   home.packages = with pkgs.nerd-fonts; [

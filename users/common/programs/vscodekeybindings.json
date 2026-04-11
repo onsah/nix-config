@@ -1,0 +1,14 @@
+[
+  {
+    "command": "workbench.action.navigateBack",
+    "key": "ctrl+[BracketLeft]"
+  },
+  {
+    "command": "workbench.action.navigateForward",
+    "key": "ctrl+[BracketRight]"
+  },
+  {
+    "key": "ctrl+u",
+    "command": "unicode-latex.insertMathSymbol"
+  }
+]
