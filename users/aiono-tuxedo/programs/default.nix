@@ -28,6 +28,7 @@
     ./heroic.nix
     ./intellij.nix
     ./opencode.nix
+    ./zed-editor.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate =
