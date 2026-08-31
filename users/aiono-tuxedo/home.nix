@@ -80,4 +80,6 @@
       dynamic-workspaces = true;
     };
   };
+
+  home.packages = [ pkgs.nextcloud-client ];
 }
