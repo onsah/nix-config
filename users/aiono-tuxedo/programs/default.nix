@@ -7,6 +7,7 @@
     ../../common/programs/obsidian.nix
     ./blackbox.nix
     ./chromium.nix
+    ./evolution.nix
     ./git.nix
     ./newsflash.nix
     ./apostrophe.nix
@@ -27,7 +28,7 @@
     ./nushell
     ./heroic.nix
     ./intellij.nix
-    ./opencode.nix
+    ./opencode
     ./zed-editor.nix
   ];
 
