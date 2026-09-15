@@ -7,6 +7,7 @@
     pkgs.nerd-fonts.adwaita-mono
     # I use this for my typst formulas
     pkgs.xits-math
+    pkgs.stix-otf
   ];
 
   fonts.fontconfig.enable = true;
